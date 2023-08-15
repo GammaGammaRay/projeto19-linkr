@@ -2,7 +2,9 @@ import { createGlobalStyle } from "styled-components"
 
 const GlobalStyle = createGlobalStyle`
 body{
-    background-color: #d7d7d7;
+    font-family: "Oswald";
+    height: 100vh;
+    background-color: #151515;
 }
 input::-webkit-input-placeholder {
   font-family: inherit; 

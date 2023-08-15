@@ -1,14 +1,8 @@
 import { styled } from "styled-components"
 
 const PageContainer = styled.div`
-  font-family: "Nunito Sans";
   width: 100%;
-  max-width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   
 `
 const ContentContainer = styled.div`
@@ -22,5 +16,7 @@ const ContentContainer = styled.div`
     margin-bottom: 200px;
   }
 `
+
+
 
 export { PageContainer, ContentContainer }
