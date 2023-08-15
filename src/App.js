@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
+
+import { PageContainer } from "./style/PageContainer"
+import Pages from "./pages"
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <PageContainer>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Navigate to="/sign-in" />} />
+          <Route path="/home" element={<Pages.Home />} />
+          <Route path="/sign-in" element={<Pages.SignIn />} />
+          <Route path="/sign-up" element={<Pages.SignUp />} />
+          <Route path="/hashtag/:id" element={<Pages.Hashtag />} />
+        </Routes>
+      </BrowserRouter>
+    </PageContainer>
+  )
 }
 
-export default App;
+export default App
