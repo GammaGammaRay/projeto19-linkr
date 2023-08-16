@@ -5,11 +5,9 @@ import { Link, useNavigate, useLocation } from "react-router-dom"
 import { AuthContext } from "../context/auth.context.jsx"
 
 function Nav() {
-  const location = useLocation()
-  const hideNavOnPages = ["/sign-in", "/sign-up"]
+  
   // const navigate = useNavigate()
 
-  const shouldDisplayNav = !hideNavOnPages.includes(location.pathname)
 
   // const { auth, logout } = useContext(AuthContext)
 
@@ -83,7 +81,7 @@ const NavContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 1px 1px 6px 4px #00000024;
+  box-shadow: 1px 1px 6px 4px #6d6d6d2e;
   background-color: #151515;
   color: white;
   a {

@@ -32,6 +32,8 @@ const FormContainer = styled.div`
 `
 
 const SignUpContainer = styled.div`
+  background-color: #151515;
+  width: 100%;
   display: flex;
   flex-direction: row;
   @media screen and (max-width: 768px) {
