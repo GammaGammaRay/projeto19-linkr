@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-route
 import { PageContainer } from "./style/PageContainer";
 import Pages from "./pages";
 import Nav from "./components/Nav.component";
+import UserPage from "./pages/UserPage";
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
           <Route path="/sign-in" element={<Pages.SignIn />} />
           <Route path="/sign-up" element={<Pages.SignUp />} />
           <Route path="/hashtag/:id" element={<Pages.Hashtag />} />
+          <Route path="/user/:id" element={<UserPage />} />
         </Routes>
       </BrowserRouter>
     </PageContainer>
