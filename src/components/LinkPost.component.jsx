@@ -5,18 +5,24 @@ function LinkPost() {
   const linkImagePlaceholder =
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQR71nuAXwsp7cDILq-93prI73gJhYQ02dEIMDxtG44eA&s"
 
+  const linkToPlaceholder = "https://www.youtube.com/watch?v=dQw4w9WgXcQa"
+
   return (
-    <LinkPostContainer>
+    <LinkPostContainer href={linkToPlaceholder}>
       <LinkPostContainerLeft>
         <h2>Como aplicar o Material UI em um projeto React</h2>
         <p>
           Hey! I have moved this tutorial to my personal blog. Same content, new
           location. Sorry about making you click through to another page.
         </p>
-        <p>https://medium.com/@pshrmn/a-simple-react-router</p>
+        <a href={linkToPlaceholder}>
+          <p>https://medium.com/@pshrmn/a-simple-react-router</p>
+        </a>
       </LinkPostContainerLeft>
       <LinkPostContainerRight>
-        <LinkPostImage src={linkImagePlaceholder} />
+        <a href={linkToPlaceholder}>
+          <LinkPostImage src={linkImagePlaceholder} />
+        </a>
       </LinkPostContainerRight>
     </LinkPostContainer>
   )
@@ -42,7 +48,7 @@ const LinkPostContainerLeft = styled.div`
   box-sizing: border-box;
   margin: 10px 0 10px 0;
   padding: 16px;
-  h2{
+  h2 {
     font-size: 16px;
   }
 `
