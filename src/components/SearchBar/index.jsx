@@ -16,6 +16,10 @@ export default function SearchBar() {
   const { auth } = useAuth() || {};
 
   function handleInputChange() {
+    if (inputRef.current.state.value.length < 3) {
+      setSearchResults([]);
+      return;
+    }
     const inputValue = inputRef.current.state.value;
 
     const promise = api.searchUsers(auth, inputValue);
@@ -35,7 +39,7 @@ export default function SearchBar() {
         <DebounceInput
           ref={inputRef}
           minLength={3}
-          debounceTimeout={3000}
+          debounceTimeout={30}
           onChange={handleInputChange}
           className="search-input"
           placeholder={"Search for people"}
