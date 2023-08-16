@@ -4,12 +4,13 @@ const GlobalStyle = createGlobalStyle`
 body{
     font-family: "Oswald";
     height: 100vh;
-    background-color: #151515;
+    background-color: #333333;
 }
 input::-webkit-input-placeholder {
   font-family: inherit; 
   font-size: inherit;
 }
+
     button {
         outline: none;
         border: none;
@@ -21,35 +22,25 @@ input::-webkit-input-placeholder {
         width: 100%;
         padding: 12px;
     }
+
     h1 {
         font-weight: 700;
         font-size: 26px;
         color: white;
     }
+
     input {
         font-size: 20px;
+        font-weight: 300;
         width: calc(100% - 30px);
         border-radius: 5px;
         outline: none;
-        border: 1px solid #ccc;
+        border: none;
         padding: 15px;
         margin: 1px;
-        :focus {
-            border: 2px solid #ffb6b6;
-            margin: 0px;
-        }
+  
     }
-    
-    input::placeholder {
-        font-weight: 100;
-        font-style: italic;
-        color: #cfcfcfff;
-    }
-    textarea::placeholder {
-        font-weight: 100;
-        font-style: italic;
-        color: #cfcfcfff;
-    }
+
     form {
         display: flex;
         flex-direction: column;
@@ -59,6 +50,7 @@ input::-webkit-input-placeholder {
         width: 100%;
         border-radius: 5px;
     }
+
     a {
         font-weight: 700;
         font-size: 15px;
