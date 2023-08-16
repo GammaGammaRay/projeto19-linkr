@@ -7,36 +7,38 @@ import TrendingTags from "../components/TrendingTags.component"
 
 function Home() {
   return (
-      <HomePageContainer>
-        <TimelineContainer>
-          <UserPostForm />
-          <TimelinePosts />
-        </TimelineContainer>
-        <SideBarContainer>
-          <TrendingTags />
-        </SideBarContainer>
-      </HomePageContainer>
+    <HomePageContainer>
+      <TimelineContainer>
+        <UserPostForm />
+        <TimelinePosts />
+      </TimelineContainer>
+      <SideBarContainer>
+        <TrendingTags />
+      </SideBarContainer>
+    </HomePageContainer>
   )
 }
 
 const HomePageContainer = styled.div`
-width: 80%;
+  width: 80%;
 
   display: flex;
   flex-direction: row;
-  justify-content: start;
-  /* background-color: antiquewhite; */
+  justify-content: space-between;
+
+  margin-top: 40px;
 `
 
 const SideBarContainer = styled.div`
+flex: 1;
+margin-left: 30px;
   display: flex;
-  justify-content: start;
+  justify-content: space-between;
   align-items: start;
-  /* background-color: aqua; */
 `
 
 const TimelineContainer = styled.div`
-/* background-color: aquamarine; */
+width: 75%;
 `
 
 export default Home

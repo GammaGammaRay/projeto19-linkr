@@ -25,6 +25,7 @@ function LinkPost() {
 const LinkPostContainer = styled.div`
   width: 100%;
   height: fit-content;
+  max-height: 80%;
   border-radius: 11px;
   border: 1.5px solid #4d4d4d;
   display: flex;
@@ -36,11 +37,11 @@ const LinkPostContainerRight = styled.div`
 `
 
 const LinkPostContainerLeft = styled.div`
-  width: 90%;
+  width: 80%;
 
   box-sizing: border-box;
-  padding: 16px;
   margin: 10px 0 10px 0;
+  padding: 16px;
   h2{
     font-size: 16px;
   }

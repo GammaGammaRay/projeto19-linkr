@@ -18,7 +18,7 @@ function TimelinePostItem() {
           Lorem ipsum dolor est bla bla bla etc etc e tals Muito maneiro esse
           tutorial de Material UI com React, deem uma olhada!
         </p>
-        <LinkPost/>
+        <LinkPost />
       </TimeLinePostRight>
     </TimelinePost>
   )
@@ -27,7 +27,7 @@ function TimelinePostItem() {
 const TimelinePost = styled.div`
   font-family: "Lato";
   color: white;
-  line-height: 1.5em;
+  line-height: 1.6em;
 
   width: 100%;
   height: fit-content;
@@ -55,10 +55,13 @@ const TimeLinePostRight = styled.div`
   flex-direction: column;
   padding: 10px;
   h2 {
+    line-height: 1.1em;
     font-size: 26px;
-    font-weight: 00;
+    font-weight: 500;
   }
   p {
+    
+    font-size: 12px;
     margin-top: 12px;
     margin-bottom: 12px;
     font-size: 20px;

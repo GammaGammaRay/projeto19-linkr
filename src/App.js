@@ -2,11 +2,13 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 
 import { PageContainer } from "./style/PageContainer"
 import Pages from "./pages"
+import Nav from "./components/Nav.component"
 
 function App() {
   return (
     <PageContainer>
       <BrowserRouter>
+      <Nav/>
         <Routes>
           <Route path="/" element={<Navigate to="/sign-in" />} />
           <Route path="/home" element={<Pages.Home />} />
