@@ -2,6 +2,8 @@ import React from "react"
 import { styled } from "styled-components"
 
 import LinkPost from "./LinkPost.component"
+import { LikeComponent } from "./Like.component"
+
 
 function TimelinePostItem() {
   const authorImagePlaceholder =
@@ -11,6 +13,7 @@ function TimelinePostItem() {
     <TimelinePost>
       <TimeLinePostLeft>
         <AuthorImage src={authorImagePlaceholder} />
+        <LikeComponent/>
       </TimeLinePostLeft>
       <TimeLinePostRight>
         <h2>Juvenal Juvêncio</h2>
