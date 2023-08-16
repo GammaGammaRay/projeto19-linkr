@@ -15,7 +15,7 @@ function PostForm() {
 
           <StyledForm>
             <input placeholder="http://..." />
-            <PostText />
+            <PostText placeholder="What's this link all about?"/>
           </StyledForm>
         </UserPostRight>
       </UserPostFormContainer>

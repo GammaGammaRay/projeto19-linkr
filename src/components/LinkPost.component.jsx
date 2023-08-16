@@ -24,25 +24,30 @@ function LinkPost() {
 
 const LinkPostContainer = styled.div`
   width: 100%;
+  height: fit-content;
   border-radius: 11px;
-  border: 1px solid #4d4d4d;
+  border: 1.5px solid #4d4d4d;
   display: flex;
   flex-direction: row;
-  
+  justify-content: space-between;
 `
 const LinkPostContainerRight = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+  width: 30%;
 `
+
 const LinkPostContainerLeft = styled.div`
-  width: 100%;
+  width: 90%;
+
   box-sizing: border-box;
   padding: 16px;
+  margin: 10px 0 10px 0;
+  h2{
+    font-size: 16px;
+  }
 `
 
 const LinkPostImage = styled.img`
-width: 100%;
+  width: 100%;
   height: 100%;
   object-fit: cover;
   border-top-right-radius: 11px;

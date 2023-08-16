@@ -27,6 +27,7 @@ function TimelinePostItem() {
 const TimelinePost = styled.div`
   font-family: "Lato";
   color: white;
+  line-height: 1.5em;
 
   width: 100%;
   height: fit-content;
@@ -60,7 +61,7 @@ const TimeLinePostRight = styled.div`
   p {
     margin-top: 12px;
     margin-bottom: 12px;
-    font-size: 17px;
+    font-size: 20px;
     color: #b7b7b7;
   }
 `
