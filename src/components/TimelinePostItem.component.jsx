@@ -1,14 +1,16 @@
 import React from "react"
 import { styled } from "styled-components"
 
+import LinkPost from "./LinkPost.component"
+
 function TimelinePostItem() {
-  const testImage =
+  const authorImagePlaceholder =
     "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTfeiK25FERClFs4W7YW5U9uN3EgWX1istoqeFeN_IPFLBGOvaC"
 
   return (
     <TimelinePost>
       <TimeLinePostLeft>
-        <AuthorImage src={testImage} />
+        <AuthorImage src={authorImagePlaceholder} />
       </TimeLinePostLeft>
       <TimeLinePostRight>
         <h2>Juvenal Juvêncio</h2>
@@ -16,6 +18,7 @@ function TimelinePostItem() {
           Lorem ipsum dolor est bla bla bla etc etc e tals Muito maneiro esse
           tutorial de Material UI com React, deem uma olhada!
         </p>
+        <LinkPost/>
       </TimeLinePostRight>
     </TimelinePost>
   )
@@ -54,11 +57,11 @@ const TimeLinePostRight = styled.div`
     font-size: 26px;
     font-weight: 00;
   }
-  p{
+  p {
     margin-top: 12px;
     margin-bottom: 12px;
     font-size: 17px;
-    color: #B7B7B7;
+    color: #b7b7b7;
   }
 `
 
