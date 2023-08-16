@@ -16,8 +16,22 @@ function searchUsers(auth, string) {
   return promise;
 }
 
+async function signIn(auth, payload) {
+  const token = await axios.post(`${API_URL}/signin`, payload, tokenProvider(auth));
+
+  return token;
+}
+
+async function signUp(auth, payload) {
+  const token = await axios.post(`${API_URL}/signup`, payload, tokenProvider(auth));
+
+  return token;
+}
+
 const api = {
   searchUsers,
+  signIn,
+  signUp,
 };
 
 export default api;
