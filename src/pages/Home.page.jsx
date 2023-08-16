@@ -4,6 +4,7 @@ import UserPostForm from "../components/UserPostForm.component"
 import TimelinePosts from "../components/TimelinePostList.component.jsx"
 import TrendingTags from "../components/TrendingTags.component"
 import Nav from "../components/Nav.component"
+import { ConfirmDelete } from "../components/ConfirmDelete"
 
 
 export default function Home() {
@@ -13,7 +14,7 @@ export default function Home() {
 
     <TimelineContainer>
       <h1>timeline</h1>
-
+      <ConfirmDelete/>
       <UserPostForm />
       <TimelinePosts />
       <TimelinePosts />
