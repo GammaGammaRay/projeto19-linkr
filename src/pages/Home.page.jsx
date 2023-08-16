@@ -14,7 +14,6 @@ export default function Home() {
 
     <TimelineContainer>
       <h1>timeline</h1>
-      <ConfirmDelete/>
       <UserPostForm />
       <TimelinePosts />
       <TimelinePosts />
