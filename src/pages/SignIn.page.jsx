@@ -3,6 +3,29 @@ import LinkrTitle from "../components/LinkrTitle.component"
 import { styled } from "styled-components"
 
 function SignIn() {
+<<<<<<< Updated upstream
+=======
+
+  const username = useRef();
+  const profileUrl = useRef();
+  const email = useRef();
+  const password = useRef();
+  
+  function submit () {
+
+    const data = {
+      email: email.current.value,
+      password: password.current.value,
+      username: username.current.value,
+      profileUrl: profileUrl.current.value
+    };
+    
+    
+
+  }
+
+
+>>>>>>> Stashed changes
   return (
     <SignInContainer>
       <LinkrTitle />
