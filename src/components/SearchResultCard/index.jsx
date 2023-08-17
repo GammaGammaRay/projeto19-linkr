@@ -1,10 +1,10 @@
-import { SearchResultCardWrapper } from "./styled";
+import { SearchResultCardLink, SearchResultCardWrapper } from "./styled";
 
-export default function SearchResultCard({ profileUrl, userName }) {
+export default function SearchResultCard({ id, profileUrl, userName }) {
   return (
     <SearchResultCardWrapper>
       <img src={profileUrl} alt="profile picture" />
-      <span>{userName}</span>
+      <SearchResultCardLink to={`/user/${id}`}>{userName}</SearchResultCardLink>
     </SearchResultCardWrapper>
   );
 }
