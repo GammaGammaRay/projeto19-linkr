@@ -1,17 +1,23 @@
 import React from "react"
 import { styled } from "styled-components"
-
 import LinkPost from "./LinkPost.component"
+import { LikeComponent } from "./Like.component"
 
-function TimelinePostItem() {
+
+export default function TimelinePostItem() {
   const authorImagePlaceholder =
     "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTfeiK25FERClFs4W7YW5U9uN3EgWX1istoqeFeN_IPFLBGOvaC"
 
   return (
     <TimelinePost>
+
       <TimeLinePostLeft>
+
         <AuthorImage src={authorImagePlaceholder} />
+        <LikeComponent/>
+
       </TimeLinePostLeft>
+
       <TimeLinePostRight>
         <h2>Juvenal Juvêncio</h2>
         <p>
@@ -20,6 +26,7 @@ function TimelinePostItem() {
         </p>
         <LinkPost />
       </TimeLinePostRight>
+
     </TimelinePost>
   )
 }
@@ -28,23 +35,19 @@ const TimelinePost = styled.div`
   font-family: "Lato";
   color: white;
   line-height: 1.6em;
-
   width: 100%;
   height: fit-content;
   min-height: 210px;
-
   display: flex;
   flex-direction: row;
-
   border-radius: 16px;
   background-color: #171717;
-  margin: 12px 0 12px 0;
   padding: 10px;
+  margin-bottom: 20px;
 `
 
 const TimeLinePostLeft = styled.div`
-  width: 20%;
-
+  width: 10%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -70,12 +73,9 @@ const TimeLinePostRight = styled.div`
 `
 
 const AuthorImage = styled.img`
-  width: 90%;
-  max-width: 80px;
-  min-width: 50px;
+  width: 100%;
   aspect-ratio: 1/1;
   object-fit: cover;
   border-radius: 100%;
 `
 
-export default TimelinePostItem

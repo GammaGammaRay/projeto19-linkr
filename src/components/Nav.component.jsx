@@ -10,6 +10,7 @@ function Nav() {
   const navigate = useNavigate()
   const { token, logout } = useAuth();
 
+
   const [isLogged, setLogged] = useState();
   const [isHidden, setHidden] = useState(true); // logout button.
   
@@ -30,6 +31,9 @@ function Nav() {
       <NavLeft>
         <Linkr>linkr</Linkr>
       </NavLeft>
+    <NavMid>
+        <SearchBar/>
+      </NavMid>
       <NavRight $isHidden={isHidden}>
         <div>
           <IoIosArrowUp alt="Open close icon" onClick={() => setHidden(!isHidden)} />
@@ -48,7 +52,7 @@ const NavContainer = styled.div`
   font-weight: 500;
   font-size: 40px;
   width: 100%;
-  height: 40px;
+  height: 65px;
   top: 0px;
   left: 0px;
   position: fixed;
@@ -77,6 +81,10 @@ const NavContainer = styled.div`
       padding: 2px 5px;
     }
   }
+  input::placeholder {
+    color: white;
+    opacity: 1;
+  }
 `
 
 const NavLeft = styled.div`
@@ -86,6 +94,12 @@ const NavLeft = styled.div`
   flex-direction: row;
   justify-content: start;
 `
+const NavMid = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
 const NavRight = styled.div`
   width: fit-content;
   height: 100%;
@@ -124,6 +138,18 @@ const StyledLink = styled(Link)`
 const Linkr = styled.div`
   font-family: "Passion One";
   letter-spacing: 3px;
+`
+
+const SearchUsers = styled.input`
+  font-family: "Lato";
+  font-size: 16px;
+  padding: 5px;
+  border: none;
+  background-color: transparent;
+  border-style: solid;
+  border: darkgray;
+  color: white;
+  
 `
 
 export default Nav
