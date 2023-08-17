@@ -16,6 +16,7 @@ function App() {
           <Route path="/sign-up" element={<Pages.SignUp />} />
           <Route path="/hashtag/:id" element={<Pages.Hashtag />} />
           <Route path="/user/:id" element={<UserPage />} />
+          <Route path="*" element={<Pages.Home />} />
         </Routes>
       </BrowserRouter>
     </PageContainer>

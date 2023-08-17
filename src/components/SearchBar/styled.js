@@ -5,23 +5,22 @@ const ComponentContainer = styled.div`
   flex-direction: column;
   border-radius: 8px;
   background: #e7e7e7;
-  margin: 20px 0;
   gap: 14px;
 `;
 
 const SearchBarWrapper = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
-  position: relative;
   border-radius: 8px;
-  background: #e7e7e7;
+  background: #fff;
 
   .search-input {
-    width: 500px;
-    height: 10px;
-    flex-shrink: 0;
+
+    width: 553px;
+    height: 20px;
+
     border-radius: 8px;
     background: #fff;
 
@@ -40,17 +39,25 @@ const SearchBarWrapper = styled.div`
   }
 
   img {
-    position: absolute;
-    right: 11px;
-    top: 8px;
+
+    padding-top: 5px;
+    padding-right: 11px;
+    cursor: pointer;
+
   }
 `;
 
 const SearchResultsWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding-bottom: 23px;
+  border-radius: 8px;
+  background: #e7e7e7;
+  padding-bottom: 10px;
+  position: absolute;
+  width: 630px;
+  top: 50px;
+  z-index: -1;
+  padding-top: 20px;
 `;
 
 export { ComponentContainer, SearchBarWrapper, SearchResultsWrapper };
