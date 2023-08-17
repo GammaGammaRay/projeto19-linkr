@@ -2,14 +2,13 @@ import React, { useEffect, useState } from "react"
 import { styled } from "styled-components"
 import { Link, useNavigate } from "react-router-dom"
 import useAuth from "../hooks/useAuth";
-import arrow from "../assets/images/icons/arrow.png"
 import { IoIosArrowUp } from "react-icons/io"
+import SearchBar from "./SearchBar";
 
 function Nav() {
   
   const navigate = useNavigate()
-  const { token, logout } = useAuth();
-
+  const { token, logout, auth } = useAuth();
 
   const [isLogged, setLogged] = useState();
   const [isHidden, setHidden] = useState(true); // logout button.
@@ -37,7 +36,7 @@ function Nav() {
       <NavRight $isHidden={isHidden}>
         <div>
           <IoIosArrowUp alt="Open close icon" onClick={() => setHidden(!isHidden)} />
-          <img alt="User profile" src={arrow}/>
+          <img alt="User profile" src={auth.profileUrl}/>
           <StyledLink $isHidden={isHidden} to="/" onClick={handleSignOut}>
             Signout
           </StyledLink>
@@ -108,6 +107,9 @@ const NavRight = styled.div`
   position: relative;
   padding: 0px 15px;
 
+  display: flex;
+  align-items: center;
+
   div {
     display: flex;
     justify-content: center;
@@ -119,6 +121,14 @@ const NavRight = styled.div`
       cursor: pointer;
       width: 32px;
     }
+    
+    img {
+      width: 32px;
+      height: 32px;
+      
+      border-radius: 100%;
+      background-color: white;
+    }
 
   }
 `
@@ -127,7 +137,6 @@ const StyledLink = styled(Link)`
   bottom: -20px;
   right: 0px;
   text-decoration: none;
-  padding: 10px 100px;
   visibility: ${(props) => props.$isHidden ? "hidden" : "visible"};
   align-items: center;
 

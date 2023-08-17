@@ -30,7 +30,11 @@ function SignIn() {
     
       button.current.disabled = true;
       const response = await api.signIn(data);    
-      auth.login({}, response.data.token); // Devo discutir isso hoje na daily. Não compreendi o que o authData é.
+      // const userData = await api.getUserById(response.data.id); // Endpoint ainda nào existe.
+
+      const mockUserData = {profileUrl: "", username: ""};
+
+      auth.login(mockUserData, response.data.token); 
       navigate("/timeline");      
 
     } catch (error) {
