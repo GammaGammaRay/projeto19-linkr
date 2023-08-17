@@ -45,6 +45,7 @@ export default function SearchBar() {
           placeholder={"Search for people"}
           onBlur={() => setTimeout(() => setSearchResults([]), 200)}
           onFocus={handleInputChange}
+          data-test="search"
         />
         <img src={searchIcon} alt="search icon" />
       </SearchBarWrapper>

@@ -17,10 +17,6 @@ const SearchResultCardWrapper = styled.div`
   &:hover {
     background: #333232;
     cursor: pointer;
-    Link {
-      cursor: pointer;
-      color: #63edff;
-    }
   }
 
   img {
