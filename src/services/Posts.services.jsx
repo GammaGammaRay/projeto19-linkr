@@ -34,7 +34,7 @@ export default function PostServices() {
           setError(true);
           setRefresh(false);
           alert(
-            "An error occured while trying to fetch the posts, please refresh the page"
+            "An error occured while trying to fetch the posts, please refresh the page."
           );
         }
       })
@@ -43,7 +43,7 @@ export default function PostServices() {
         setError(true);
         setRefresh(false);
         alert(
-          "An error occured while trying to fetch the posts, please refresh the page"
+          "An error occured while trying to fetch the posts, please refresh the page."
         );
       });
     // eslint-disable-next-line
