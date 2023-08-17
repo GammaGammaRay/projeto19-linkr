@@ -58,7 +58,6 @@ const TimelinePost = styled.div`
   background-color: #171717;
   padding: 10px;
   margin-bottom: 20px;
-  //border: 1px solid red;
 `
 
 const TimeLinePostLeft = styled.div`
