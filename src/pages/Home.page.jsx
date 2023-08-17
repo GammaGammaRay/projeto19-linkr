@@ -1,10 +1,8 @@
-import React from "react"
-import { styled } from "styled-components"
-import UserPostForm from "../components/UserPostForm.component"
-import TimelinePosts from "../components/TimelinePostList.component.jsx"
-import TrendingTags from "../components/TrendingTags.component"
-import Nav from "../components/Nav.component"
-import { ConfirmDelete } from "../components/ConfirmDelete"
+import { styled } from "styled-components";
+import UserPostForm from "../components/TimeLine/UserPostForm.component";
+import TimelinePosts from "../components/TimeLine/TimelinePostList.component";
+import TrendingTags from "../components/TrendingTags.component";
+import Nav from "../components/Nav.component";
 
 
 export default function Home() {
@@ -49,8 +47,7 @@ const TimelineContainer = styled.div`
   h1{
     font-weight: 700;
     font-size: 43px;
-    line-height: 63px;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
     margin-top: 50px;
   }
 `

@@ -1,7 +1,7 @@
 import React from "react"
 import { styled } from "styled-components"
-import LinkPost from "./LinkPost.component"
-import { LikeComponent } from "./Like.component"
+import LinkPost from "../LinkPost.component"
+import { LikeComponent } from "../Like.component"
 
 
 export default function TimelinePostItem() {

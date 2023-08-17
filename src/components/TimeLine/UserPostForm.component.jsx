@@ -1,20 +1,27 @@
 import  styled  from "styled-components";
-import { useState } from "react";
+import { useCallback } from "react";
 
-export default function PostForm() {
- 
-  const [url, setUrl] = useState("");
-  const [description, setDescription] = useState("");
-  const [publishing, setPublishing] = useState(false);
-  const authorImagePlaceholder =
-    "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTfeiK25FERClFs4W7YW5U9uN3EgWX1istoqeFeN_IPFLBGOvaC";
 
-    
+export default function PostForm({url, setUrl, publishing, description, setDescription, handlePost}) {
+
+  const authorImage =
+      "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTfeiK25FERClFs4W7YW5U9uN3EgWX1istoqeFeN_IPFLBGOvaC";
+  
+
+    const buttonPressed = useCallback(
+      (event) => {
+        if (event.key === "Enter") {
+          handlePost();
+        }
+      },
+      [handlePost]
+  );
+
   return (
-      <PostContainer>
+      <PostContainer data-test="publish-box">
 
         <ImageBox>
-          <UserImage src={authorImagePlaceholder} />
+          <UserImage src={authorImage} />
         </ImageBox>
 
         <PublishBox>
@@ -28,7 +35,6 @@ export default function PostForm() {
                 placeholder="http://..."
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
-                /*keyPress={buttonPressed}*/
                 disabled={publishing}
              />
             <PostText 
@@ -38,12 +44,11 @@ export default function PostForm() {
                 type="text"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                /*keyPress={buttonPressed}*/
                 disabled={publishing}/>
 
             <button
                 data-test="publish-btn"
-                /*onClick={buttonPressed}*/
+                onClick={buttonPressed}
                 disabled={publishing}
               >
                 {publishing ? "Publishing..." : "Publish"}
@@ -115,22 +120,33 @@ const FormContainer = styled.form`
     font-family: "Lato";
     font-weight: 300;
     color: #949494;
+    
+    &:disabled {
+      background-color: #d3d3d3;
+      cursor: not-allowed;
+    }
   }
   :focus {
     outline: none;
-    border: 1px solid transparent; /* Set border to transparent */
-    box-shadow: 0px 0px 3px 1px #b7b7b7; /* Optionally, add a subtle shadow */
+    border: 1px solid transparent; 
+    box-shadow: 0px 0px 3px 1px #b7b7b7; 
   }
-  button{
+  button {
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
     background-color: #1877F2;
-    border-radius: 5px;
-    width: 112px;
-    font-family: Lato;
+    color: white;
     font-weight: 700;
-    font-size: 14px;
-    line-height: 16px;
-    margin-left: 88%;
-     }
+    font-size: 15px;
+    margin-left: auto;
+    width: 100px;
+    cursor: pointer;
+    &:disabled {
+      background-color: #d3d3d3;
+      cursor: not-allowed;
+    }
+  }
 `
 
 const PostText = styled.textarea`
@@ -146,4 +162,9 @@ const PostText = styled.textarea`
   font-family: "Lato";
   font-weight: 300;
   font-size: 16px;
+
+  &:disabled {
+    background-color: #d3d3d3;
+    cursor: not-allowed;
+  }
 `

@@ -11,9 +11,9 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Navigate to="/sign-in" />} />
-          <Route path="/home" element={<Pages.Home />} />
           <Route path="/sign-in" element={<Pages.SignIn />} />
           <Route path="/sign-up" element={<Pages.SignUp />} />
+          <Route path="/timeline" element={<Pages.Home />} />
           <Route path="/hashtag/:id" element={<Pages.Hashtag />} />
           <Route path="/user/:id" element={<UserPage />} />
         </Routes>
