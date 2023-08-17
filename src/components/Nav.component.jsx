@@ -3,6 +3,7 @@ import { styled } from "styled-components"
 import { Link, useNavigate } from "react-router-dom"
 import useAuth from "../hooks/useAuth";
 import arrow from "../assets/images/icons/arrow.png"
+import { IoIosArrowUp } from "react-icons/io"
 
 function Nav() {
   
@@ -31,7 +32,7 @@ function Nav() {
       </NavLeft>
       <NavRight $isHidden={isHidden}>
         <div>
-          <img alt="Open close icon" onClick={() => setHidden(!isHidden)} src={arrow}/>  
+          <IoIosArrowUp alt="Open close icon" onClick={() => setHidden(!isHidden)} />
           <img alt="User profile" src={arrow}/>
           <StyledLink $isHidden={isHidden} to="/" onClick={handleSignOut}>
             Signout
@@ -89,22 +90,20 @@ const NavRight = styled.div`
   width: fit-content;
   height: 100%;
   right: 0;
-
-  padding-top: 15px;
   
   position: relative;
+  padding: 0px 15px;
 
   div {
     display: flex;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
     gap: 16px;
-    padding: 0px 10px;
 
-    img:nth-of-type(1) {
+    svg {
       transform: ${(props) => props.$isHidden ? "rotateX(180deg)" : "none"};
       cursor: pointer;
-      width: 16px;
+      width: 32px;
     }
 
   }
