@@ -16,14 +16,14 @@ function searchUsers(auth, string) {
   return promise;
 }
 
-function signIn(auth, payload) {
-  const promisse = axios.post(`${API_URL}/signin`, payload, tokenProvider(auth));
+function signIn(payload) {
+  const promisse = axios.post(`${API_URL}/signin`, payload);
 
   return promisse;
 }
 
-function signUp(auth, payload) {
-  const promisse = axios.post(`${API_URL}/signup`, payload, tokenProvider(auth));
+function signUp(payload) {
+  const promisse = axios.post(`${API_URL}/signup`, payload);
 
   return promisse;
 }
