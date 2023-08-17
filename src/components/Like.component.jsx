@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { Tooltip } from "react-tooltip";
 import { styled } from "styled-components";
+
 
 export function LikeComponent(){
     const[isLiked, setIsLiked] = useState(false);
-
+    const detail = `Maria João e outras 12 pessoas`;
     const handleLike = ()=>{
         setIsLiked(!isLiked);
     }
@@ -22,7 +24,18 @@ export function LikeComponent(){
             )}
             
             
-            <div className="text">14 likes</div>
+            <div  
+                className="text"
+                data-tooltip-id="details"
+                data-tooltip-content={detail}
+            >
+                14 likes
+            </div>
+            <Tooltip 
+                id="details" 
+                variant="light"
+                place="bottom"
+            />
         </CsLikeComponent>
     );
 }
@@ -38,6 +51,9 @@ export function LikeComponent(){
     //border: 1px solid white;
     //*{border: 1px solid white}
     padding-top: 15px;
+    .text{
+        font-size: 14px;
+    }
 
     ion-icon{
         cursor: pointer;
