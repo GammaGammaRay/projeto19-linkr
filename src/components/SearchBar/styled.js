@@ -17,24 +17,33 @@ const SearchBarWrapper = styled.div`
   background: #fff;
 
   .search-input {
+
     width: 553px;
     height: 20px;
+
     border-radius: 8px;
     background: #fff;
+
     font-family: Lato;
     font-size: 19px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+   
+    @media screen and (max-width: 768px) {
+      width: 250px;
+    }
     &::placeholder {
       color: #c6c6c6;
     }
   }
 
   img {
+
     padding-top: 5px;
     padding-right: 11px;
     cursor: pointer;
+
   }
 `;
 
