@@ -16,9 +16,11 @@ export default function AuthProvider({ children }) {
     localStorage.setItem("token", JSON.stringify(token))
     localStorage.setItem("auth", JSON.stringify(authData))
   }
+  
   function logout() {
     setAuth("")
     setToken(null)
+
     localStorage.removeItem("auth")
     localStorage.removeItem("token")
   }

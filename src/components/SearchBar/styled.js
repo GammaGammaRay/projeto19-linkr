@@ -19,16 +19,21 @@ const SearchBarWrapper = styled.div`
   background: #e7e7e7;
 
   .search-input {
-    width: 563px;
-    height: 20px;
+    width: 500px;
+    height: 10px;
     flex-shrink: 0;
     border-radius: 8px;
     background: #fff;
+
     font-family: Lato;
     font-size: 19px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+   
+    @media screen and (max-width: 768px) {
+      width: 250px;
+    }
     &::placeholder {
       color: #c6c6c6;
     }
@@ -37,7 +42,7 @@ const SearchBarWrapper = styled.div`
   img {
     position: absolute;
     right: 11px;
-    top: 13px;
+    top: 8px;
   }
 `;
 

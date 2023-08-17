@@ -7,41 +7,46 @@ function TrendingTags() {
       <h2>trending</h2>
       <HorizontalLine />
       <TrendingTagsContainer>
-        #queroFerias<br/>
-        #mandaPix<br/>
-        #queroFerias<br/>
-        #mandaPix<br/>
-        #queroFerias<br/>
-        #mandaPix<br/>
-        #queroFerias<br/>
-        #mandaPix<br/>
+        <p>#queroFerias</p>
+        <p>#mandaPix</p>
+        <p>#queroFerias</p>
+        <p>#mandaPix</p>
+        <p>#queroFerias</p>
+        <p>#mandaPix</p>
+        <p>#queroFerias</p>
+        <p>#mandaPix</p>
       </TrendingTagsContainer>
     </TrendingTagsContainer>
   )
 }
 
 const TrendingTagsContainer = styled.div`
-  font-family: "Oswald";
   color: white;
   line-height: 1.2rem;
-
   position: sticky;
-  top: 50px;
+  top: 180px;
   width: 100%;
   min-width: 200px;
   background-color: #171717;
-
   border-radius: 16px;
   background-color: #171717;
-  margin: 12px 0 12px 0;
   box-sizing: border-box;
-  padding: 10px;
-
+  padding: 8px;
   left: 0;
 
-
   h2{
+    font-weight: 700;
     font-size: 27px;
+    margin-left: 8px;
+    font-family: "Oswald";
+  }
+
+  p{
+    font-family: "Lato";
+    font-weight: 700;
+    font-size: 19px;
+    margin-bottom: 8px;
+    margin-top: 15px;
   }
 `
 
