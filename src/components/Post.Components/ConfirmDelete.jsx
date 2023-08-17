@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { styled } from "styled-components";
 
-export function ConfirmDelete(){
-    const [toggle, setToggle] = useState(false);
+export function ConfirmDelete(props){
+    const{toggle, setToggle} = props;
 
     const handleConfirm = ()=>{
         setToggle(!toggle);

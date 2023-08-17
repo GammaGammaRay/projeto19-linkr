@@ -1,10 +1,16 @@
-import React from "react"
+import React, { useState } from "react"
 import { styled } from "styled-components"
 import LinkPost from "./LinkPost.component"
-import { LikeComponent } from "./Like.component"
+import { LikeComponent } from "./Post.Components/Like.component"
+import { EditOrDelete } from "./Post.Components/EditOrDelete"
+
 
 
 export default function TimelinePostItem() {
+  const[isLiked, setIsLiked] = useState(false); 
+  const [toggle, setToggle] = useState(false);
+
+
   const authorImagePlaceholder =
     "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTfeiK25FERClFs4W7YW5U9uN3EgWX1istoqeFeN_IPFLBGOvaC"
 
@@ -14,11 +20,19 @@ export default function TimelinePostItem() {
       <TimeLinePostLeft>
 
         <AuthorImage src={authorImagePlaceholder} />
-        <LikeComponent/>
+
+        < LikeComponent
+            isLiked={isLiked}
+            setIsLiked={setIsLiked}
+        />
 
       </TimeLinePostLeft>
 
       <TimeLinePostRight>
+        <EditOrDelete
+            toggle={toggle}
+            setToggle={setToggle}
+        />
         <h2>Juvenal Juvêncio</h2>
         <p>
           Lorem ipsum dolor est bla bla bla etc etc e tals Muito maneiro esse
@@ -44,6 +58,7 @@ const TimelinePost = styled.div`
   background-color: #171717;
   padding: 10px;
   margin-bottom: 20px;
+  //border: 1px solid red;
 `
 
 const TimeLinePostLeft = styled.div`
@@ -57,6 +72,7 @@ const TimeLinePostRight = styled.div`
   display: flex;
   flex-direction: column;
   padding: 10px;
+  position: relative;
   h2 {
     line-height: 1.1em;
     font-size: 26px;

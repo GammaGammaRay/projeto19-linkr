@@ -4,7 +4,6 @@ import { Link, useNavigate, useLocation } from "react-router-dom"
 
 import SearchBar from "./SearchBar/index.jsx"
 import { AuthContext } from "../context/auth.context.jsx"
-import SearchBar from "./SearchBar/index.jsx"
 
 function Nav() {
   // const navigate = useNavigate()
