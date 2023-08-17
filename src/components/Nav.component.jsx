@@ -32,7 +32,7 @@ function Nav() {
       </NavLeft>
     <NavMid>
         <SearchBar/>
-      </NavMid>
+    </NavMid>
       <NavRight $isHidden={isHidden}>
         <div>
           <IoIosArrowUp alt="Open close icon" onClick={() => setHidden(!isHidden)} />
@@ -51,6 +51,7 @@ const NavContainer = styled.div`
   font-weight: 500;
   font-size: 40px;
   width: 100%;
+
   height: 65px;
   top: 0px;
   left: 0px;

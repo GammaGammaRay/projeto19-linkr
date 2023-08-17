@@ -104,6 +104,9 @@ const PublishBox = styled.div`
 const FormContainer = styled.form`
   border: none;
   border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
   input {
     font-family: "Lato";
     font-weight: 300;
@@ -118,8 +121,8 @@ const FormContainer = styled.form`
   }
   :focus {
     outline: none;
-    border: 1px solid transparent; /* Set border to transparent */
-    box-shadow: 0px 0px 3px 1px #b7b7b7; /* Optionally, add a subtle shadow */
+    border: 1px solid transparent; 
+    box-shadow: 0px 0px 3px 1px #b7b7b7; 
   }
   button{
     background-color: #1877F2;
@@ -129,7 +132,7 @@ const FormContainer = styled.form`
     font-weight: 700;
     font-size: 14px;
     line-height: 16px;
-    margin-left: 88%;
+    
      }
 `
 
