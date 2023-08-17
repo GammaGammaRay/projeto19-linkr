@@ -1,69 +1,45 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { styled } from "styled-components"
-import { Link, useNavigate, useLocation } from "react-router-dom"
-
-import { AuthContext } from "../context/auth.context.jsx"
+import { Link, useNavigate } from "react-router-dom"
+import useAuth from "../hooks/useAuth";
+import arrow from "../assets/images/icons/arrow.png"
 
 function Nav() {
   
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
+  const { token, logout } = useAuth();
 
-
-  // const { auth, logout } = useContext(AuthContext)
-
-  // const [isLogged, setIsLogged] = useState(false)
-  // const handleSignOut = (e) => {
-  //   e.preventDefault()
-  //   navigate("/")
-  //   logout()
-  // }
-
-  // useEffect(() => {
-  //   setIsLogged(auth.length > 0)
-  // }, [auth])
-
-  function SignOutLink() {
-    return (
-      // <StyledLink to="/" onClick={handleSignOut}>
-      <StyledLink to="/" >
-        Signout
-      </StyledLink>
-    )
+  const [isLogged, setLogged] = useState();
+  const [isHidden, setHidden] = useState(true); // logout button.
+  
+  const handleSignOut = (e) => {
+    e.preventDefault()
+    navigate("/")
+    logout()
   }
+
+  useEffect(() => {
+    setLogged(token)
+  }, [token])
+
+  if(!isLogged) return <></> // If is not logged, dont show navbar.
 
   return (
     <NavContainer>
       <NavLeft>
         <Linkr>linkr</Linkr>
       </NavLeft>
-      <NavRight>
-        <SignOutLink />
+      <NavRight $isHidden={isHidden}>
+        <div>
+          <img alt="Open close icon" onClick={() => setHidden(!isHidden)} src={arrow}/>  
+          <img alt="User profile" src={arrow}/>
+          <StyledLink $isHidden={isHidden} to="/" onClick={handleSignOut}>
+            Signout
+          </StyledLink>
+        </div>
       </NavRight>
     </NavContainer>
   )
-
-  // if (!isLogged) {
-  //   return (
-  //     <NavContainer>
-  //       <NavLeft />
-  //       <NavRight>
-  //         <StyledLink to={"/signin"}>Login</StyledLink>
-  //         <StyledLink to={"/signup"}>Register</StyledLink>
-  //       </NavRight>
-  //     </NavContainer>
-  //   )
-  // } else {
-  //   return (
-  //     <NavContainer>
-  //       <NavLeft>Hello, {auth[0]?.userName}</NavLeft>
-  //       <NavRight>
-  //         {/* <StyledLink to={"/managemodels"}>Manage Models</StyledLink> */}
-  //         <StyledLink to={"/newmodel"}>New Model</StyledLink>
-  //         <SignOutLink />
-  //       </NavRight>
-  //     </NavContainer>
-  //   )
-  // }
 }
 
 const NavContainer = styled.div`
@@ -114,16 +90,36 @@ const NavRight = styled.div`
   height: 100%;
   right: 0;
 
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  padding-top: 15px;
+  
+  position: relative;
+
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 16px;
+    padding: 0px 10px;
+
+    img:nth-of-type(1) {
+      transform: ${(props) => props.$isHidden ? "rotateX(180deg)" : "none"};
+      cursor: pointer;
+      width: 16px;
+    }
+
+  }
 `
 const StyledLink = styled(Link)`
+  position: absolute;
+  bottom: -20px;
+  right: 0px;
   text-decoration: none;
-  padding: 5px 10px;
-  display: flex;
+  padding: 10px 100px;
+  visibility: ${(props) => props.$isHidden ? "hidden" : "visible"};
   align-items: center;
+
+  background-color: #151515;
+  border-radius: 0px 0px 0px 8px;
 `
 
 const Linkr = styled.div`
