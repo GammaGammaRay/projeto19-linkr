@@ -2,12 +2,11 @@ import React, { useContext, useEffect, useState } from "react"
 import { styled } from "styled-components"
 import { Link, useNavigate, useLocation } from "react-router-dom"
 
+import SearchBar from "./SearchBar/index.jsx"
 import { AuthContext } from "../context/auth.context.jsx"
 
 function Nav() {
-  
   // const navigate = useNavigate()
-
 
   // const { auth, logout } = useContext(AuthContext)
 
@@ -25,9 +24,7 @@ function Nav() {
   function SignOutLink() {
     return (
       // <StyledLink to="/" onClick={handleSignOut}>
-      <StyledLink to="/" >
-        Signout
-      </StyledLink>
+      <StyledLink to="/">Signout</StyledLink>
     )
   }
 
@@ -36,34 +33,17 @@ function Nav() {
       <NavLeft>
         <Linkr>linkr</Linkr>
       </NavLeft>
+      <NavMid>
+        <SearchBar/>
+      </NavMid>
       <NavRight>
+        {/* BOTÃO PARA SIGNOUT */}
         <SignOutLink />
       </NavRight>
     </NavContainer>
   )
 
-  // if (!isLogged) {
-  //   return (
-  //     <NavContainer>
-  //       <NavLeft />
-  //       <NavRight>
-  //         <StyledLink to={"/signin"}>Login</StyledLink>
-  //         <StyledLink to={"/signup"}>Register</StyledLink>
-  //       </NavRight>
-  //     </NavContainer>
-  //   )
-  // } else {
-  //   return (
-  //     <NavContainer>
-  //       <NavLeft>Hello, {auth[0]?.userName}</NavLeft>
-  //       <NavRight>
-  //         {/* <StyledLink to={"/managemodels"}>Manage Models</StyledLink> */}
-  //         <StyledLink to={"/newmodel"}>New Model</StyledLink>
-  //         <SignOutLink />
-  //       </NavRight>
-  //     </NavContainer>
-  //   )
-  // }
+
 }
 
 const NavContainer = styled.div`
@@ -71,7 +51,7 @@ const NavContainer = styled.div`
   font-weight: 500;
   font-size: 40px;
   width: 100%;
-  height: 40px;
+  height: 65px;
   top: 0px;
   left: 0px;
   position: fixed;
@@ -100,6 +80,10 @@ const NavContainer = styled.div`
       padding: 2px 5px;
     }
   }
+  input::placeholder {
+    color: white;
+    opacity: 1;
+  }
 `
 
 const NavLeft = styled.div`
@@ -109,6 +93,12 @@ const NavLeft = styled.div`
   flex-direction: row;
   justify-content: start;
 `
+const NavMid = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
 const NavRight = styled.div`
   width: fit-content;
   height: 100%;
@@ -129,6 +119,18 @@ const StyledLink = styled(Link)`
 const Linkr = styled.div`
   font-family: "Passion One";
   letter-spacing: 3px;
+`
+
+const SearchUsers = styled.input`
+  font-family: "Lato";
+  font-size: 16px;
+  padding: 5px;
+  border: none;
+  background-color: transparent;
+  border-style: solid;
+  border: darkgray;
+  color: white;
+  
 `
 
 export default Nav
