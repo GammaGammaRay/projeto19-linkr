@@ -1,4 +1,4 @@
-import { AuthContext } from "../context/auth.context";
+import { AuthContext } from "../../context/auth.context";
 import { useCallback, useEffect, useContext, useState} from "react";
 import  styled  from "styled-components";
 import axios from "axios";
@@ -9,11 +9,11 @@ export default function PostForm() {
   const { token } = useContext(AuthContext);
   const [url, setUrl] = useState("");
   const [description, setDescription] = useState("");
-  const [error, setError] = useState(false);
-  const [emptyPage, setEmptyPage] = useState(false);
+  const [setError] = useState(false);
+  const [setEmptyPage] = useState(false);
   const [publishing, setPublishing] = useState(false);
-  const [refresh, setRefresh] = useState(true);
-  const [posts, setPosts] = useState([]);
+  const [setRefresh] = useState(true);
+  const [setPosts] = useState([]);
   const config = { headers: { Authorization: `Bearer ${token}` } };
   const authorImage =
       "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTfeiK25FERClFs4W7YW5U9uN3EgWX1istoqeFeN_IPFLBGOvaC";
@@ -222,6 +222,7 @@ const FormContainer = styled.form`
     margin-left: auto;
     width: 100px;
     cursor: pointer;
+    
     &:disabled {
       background-color: #d3d3d3;
       cursor: not-allowed;
