@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useRef, useState } from "react"
 import { styled } from "styled-components"
 import LinkPost from "./LinkPost.component"
 import { LikeComponent } from "./Post.Components/Like.component"
@@ -7,9 +7,25 @@ import { EditOrDelete } from "./Post.Components/EditOrDelete"
 
 
 export default function TimelinePostItem() {
+  const strign = `Lorem ipsum dolor est bla bla bla etc etc e tals Muito maneiro esse tutorial de Material UI com React, deem uma olhada!`
+
   const[isLiked, setIsLiked] = useState(false); 
   const [toggle, setToggle] = useState(false);
+  const [editing, setEditing] = useState(false);
+  const textRef = useRef(null);
+  const [textValue, setTextValue] = useState(strign);
+  const handleEditClick = () => {
+    setEditing(!editing);
+  };
+ 
+  const handleKey = (e) => {
+    console.log(e);
+    if(e.keyCode === 27)return setEditing(!editing);
+    if(e.keyCode !==13)return;
 
+    setTextValue(textRef.current.value);
+    setEditing(false);
+  };
 
   const authorImagePlaceholder =
     "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTfeiK25FERClFs4W7YW5U9uN3EgWX1istoqeFeN_IPFLBGOvaC"
@@ -30,14 +46,36 @@ export default function TimelinePostItem() {
 
       <TimeLinePostRight>
         <EditOrDelete
+            textRef={textRef}
             toggle={toggle}
             setToggle={setToggle}
+            handleEditClick={handleEditClick}
         />
-        <h2>Juvenal Juvêncio</h2>
-        <p>
-          Lorem ipsum dolor est bla bla bla etc etc e tals Muito maneiro esse
-          tutorial de Material UI com React, deem uma olhada!
-        </p>
+        <h2>Juvenal Juvêncio</h2>       
+
+            {editing ? (
+              <>
+                <textarea
+                    ref={textRef} 
+                    defaultValue={textValue}
+                    className="description" 
+                    onKeyDown={(e) => handleKey(e)}            
+                    style={{
+                          fontFamily: "Arial, sans-serif",
+                          fontSize: "14px",
+                          padding: "10px",
+                          border: "1px solid #ccc",
+                          borderRadius: "4px",
+                          width: "100%",
+                          height: "100%"
+                    }}
+                  />
+                </>
+  
+            ) : (<>
+              <p>{textValue}</p></>
+            )}
+        
         <LinkPost />
       </TimeLinePostRight>
 
@@ -85,6 +123,15 @@ const TimeLinePostRight = styled.div`
     margin-bottom: 12px;
     font-size: 20px;
     color: #b7b7b7;
+    
+  }
+  .description{
+    background-color: white;
+    border-radius:12px ;
+    height: 10%;
+    width: 96.6%;
+
+    margin:6% 0;
   }
 `
 
