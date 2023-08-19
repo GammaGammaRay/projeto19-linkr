@@ -5,7 +5,8 @@ import { ConfirmDelete } from "./ConfirmDelete";
 
 
 export function EditOrDelete(props){
-    const{toggle, setToggle} = props;
+    const{toggle, setToggle, handleEditClick} = props;
+
 
     return(
         <CsEditOrDelete>
@@ -13,8 +14,13 @@ export function EditOrDelete(props){
                 toggle={toggle}
                 setToggle={setToggle}
             />
-            <div className="edit option">< img src={edit}/></div>
-            <div className="delete option"><img src={trash} onClick={()=>setToggle(!toggle)}/></div>
+            <div className="edit option" onClick={handleEditClick}>< img src={edit}/></div>
+            <div className="delete option">
+                <img
+                    src={trash}
+                    onClick={()=>setToggle(!toggle)} 
+                />
+            </div>
         </CsEditOrDelete>
     );
 }
