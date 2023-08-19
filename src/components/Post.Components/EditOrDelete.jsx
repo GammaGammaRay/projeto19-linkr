@@ -1,17 +1,13 @@
 import { styled } from "styled-components";
-import trash from './../../assets/images/icons/trash.svg';
-import edit from './../../assets/images/icons/edit.svg'
+//import trash from './../../assets/images/icons/trash.svg';
+//import edit from './../../assets/images/icons/edit.svg'
 import { ConfirmDelete } from "./ConfirmDelete";
 
-//AQUI ESTÃO AS IMPORTAÇÕES E AS TAGS
-//NÃO MUDEI POR QUE VAI DAR CONFLITOO ANTES
-//DE SER ACEITO O ULTIMO PULL REQUEST QUE FIZ E 
-//ENTÃO VOU ESPERAR SER ACEITO PRIMEIRO PRA USAR DPS
 
-// import {TbTrashFilled} from 'react-icons/tb';
-// import {PiPencilBold} from 'react-icons/pi';
-// <TbTrashFilled/>
-// <PiPencilBold/>
+import {TbTrashFilled} from 'react-icons/tb';
+import {PiPencilBold} from 'react-icons/pi';
+
+
 
 
 export function EditOrDelete(props){
@@ -23,8 +19,12 @@ export function EditOrDelete(props){
                 toggle={toggle}
                 setToggle={setToggle}
             />
-            <div className="edit option">< img src={edit}/></div>
-            <div className="delete option"><img src={trash} onClick={()=>setToggle(!toggle)}/></div>
+            <div className="edit option">
+                 <PiPencilBold/>
+            </div>
+            <div className="delete option">
+                 <TbTrashFilled  onClick={()=>setToggle(!toggle)}/>
+            </div>
         </CsEditOrDelete>
     );
 }
