@@ -3,6 +3,16 @@ import trash from './../../assets/images/icons/trash.svg';
 import edit from './../../assets/images/icons/edit.svg'
 import { ConfirmDelete } from "./ConfirmDelete";
 
+//AQUI ESTÃO AS IMPORTAÇÕES E AS TAGS
+//NÃO MUDEI POR QUE VAI DAR CONFLITOO ANTES
+//DE SER ACEITO O ULTIMO PULL REQUEST QUE FIZ E 
+//ENTÃO VOU ESPERAR SER ACEITO PRIMEIRO PRA USAR DPS
+
+// import {TbTrashFilled} from 'react-icons/tb';
+// import {PiPencilBold} from 'react-icons/pi';
+// <TbTrashFilled/>
+// <PiPencilBold/>
+
 
 export function EditOrDelete(props){
     const{toggle, setToggle} = props;
