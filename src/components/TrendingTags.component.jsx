@@ -1,23 +1,31 @@
-import React from "react"
-import { styled } from "styled-components"
+import React from "react";
+import { styled } from "styled-components";
+import api from "../services/api";
 
 function TrendingTags() {
+  useEffect(() => {
+    async function getTrendingTagsList() {
+      try {
+        const trendingTags = await api.fetchTrendingHashtags();
+        console.log(trendingTags);
+        setAnimalList(trendingTags);
+      } catch (error) {
+        console.error("Error fetching trending hashtags:", error.message);
+      }
+    }
+    fetchAnimalList();
+    console.log(animalList);
+  }, []);
+
   return (
     <TrendingTagsContainer>
       <h2>trending</h2>
       <HorizontalLine />
-      <TrendingTagsContainer>
-        <p>#queroFerias</p>
-        <p>#mandaPix</p>
-        <p>#queroFerias</p>
-        <p>#mandaPix</p>
-        <p>#queroFerias</p>
-        <p>#mandaPix</p>
-        <p>#queroFerias</p>
-        <p>#mandaPix</p>
-      </TrendingTagsContainer>
+      {trendingTags.map((tag, index) => (
+        <p key={index}>#{tag}</p>
+      ))}
     </TrendingTagsContainer>
-  )
+  );
 }
 
 const TrendingTagsContainer = styled.div`
@@ -34,21 +42,21 @@ const TrendingTagsContainer = styled.div`
   padding: 8px;
   left: 0;
 
-  h2{
+  h2 {
     font-weight: 700;
     font-size: 27px;
     margin-left: 8px;
     font-family: "Oswald";
   }
 
-  p{
+  p {
     font-family: "Lato";
     font-weight: 700;
     font-size: 19px;
     margin-bottom: 8px;
     margin-top: 15px;
   }
-`
+`;
 
 const HorizontalLine = styled.div`
   margin-top: 10px;
@@ -57,6 +65,6 @@ const HorizontalLine = styled.div`
   margin-left: -10px;
   box-sizing: border-box;
   height: 2px;
-`
+`;
 
-export default TrendingTags
+export default TrendingTags;

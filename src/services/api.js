@@ -16,8 +16,29 @@ function searchUsers(auth, string) {
   return promise;
 }
 
+
+async function fetchHashtagPosts(id, auth) {
+  try {
+    const response = await axios.get(`/hashtags/${id}`)
+    return response.data
+  } catch (error) {
+    throw error
+  }
+}
+
+async function fetchTrendingHashtags(id, auth) {
+  try {
+    const response = await axios.get(`/hashtags/${id}`)
+    return response.data
+  } catch (error) {
+    throw error
+  }
+}
+
 const api = {
   searchUsers,
+  fetchTrendingHashtags,
+  fetchHashtagPosts
 };
 
 export default api;
