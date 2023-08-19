@@ -33,12 +33,25 @@ async function fetchTrendingHashtags(id, auth) {
   } catch (error) {
     throw error
   }
+function signIn(payload) {
+  const promisse = axios.post(`${API_URL}/signin`, payload);
+
+  return promisse;
+}
+
+function signUp(payload) {
+  const promisse = axios.post(`${API_URL}/signup`, payload);
+
+  return promisse;
+}
 }
 
 const api = {
   searchUsers,
   fetchTrendingHashtags,
-  fetchHashtagPosts
+  fetchHashtagPosts,
+  signIn,
+  signUp,
 };
 
 export default api;

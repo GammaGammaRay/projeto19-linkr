@@ -43,6 +43,8 @@ export default function SearchBar() {
           onChange={handleInputChange}
           className="search-input"
           placeholder={"Search for people"}
+          onBlur={() => setTimeout(() => setSearchResults([]), 200)}
+          onFocus={handleInputChange}
         />
         <img src={searchIcon} alt="search icon" />
       </SearchBarWrapper>
@@ -51,6 +53,7 @@ export default function SearchBar() {
           {searchResults.map((result) => (
             <SearchResultCard
               key={result.id}
+              id={result.id}
               profileUrl={result.profileUrl}
               userName={result.userName}
             />

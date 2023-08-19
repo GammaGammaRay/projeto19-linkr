@@ -128,8 +128,8 @@ const FormContainer = styled.form`
   }
   :focus {
     outline: none;
-    border: 1px solid transparent;
-    box-shadow: 0px 0px 3px 1px #b7b7b7;
+    border: 1px solid transparent; 
+    box-shadow: 0px 0px 3px 1px #b7b7b7; 
   }
   button {
     background-color: #1877f2;
@@ -139,8 +139,9 @@ const FormContainer = styled.form`
     font-weight: 700;
     font-size: 14px;
     line-height: 16px;
-  }
-`;
+    
+     }
+`
 
 const PostText = styled.textarea`
   width: 100%;

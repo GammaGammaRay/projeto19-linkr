@@ -4,7 +4,6 @@ import UserPostForm from "../components/UserPostForm.component"
 import TimelinePosts from "../components/TimelinePostList.component.jsx"
 import TrendingTags from "../components/TrendingTags.component"
 import Nav from "../components/Nav.component"
-import { ConfirmDelete } from "../components/ConfirmDelete"
 
 
 export default function Home() {
