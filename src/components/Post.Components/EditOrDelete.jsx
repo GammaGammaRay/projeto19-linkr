@@ -1,17 +1,11 @@
 import { styled } from "styled-components";
-//import trash from './../../assets/images/icons/trash.svg';
-//import edit from './../../assets/images/icons/edit.svg'
 import { ConfirmDelete } from "./ConfirmDelete";
-
-
 import {TbTrashFilled} from 'react-icons/tb';
 import {PiPencilBold} from 'react-icons/pi';
 
-
-
-
 export function EditOrDelete(props){
-    const{toggle, setToggle} = props;
+    const{toggle, setToggle, handleEditClick} = props;
+
 
     return(
         <CsEditOrDelete>
@@ -20,7 +14,7 @@ export function EditOrDelete(props){
                 setToggle={setToggle}
             />
             <div className="edit option">
-                 <PiPencilBold/>
+                 <PiPencilBold  onClick={handleEditClick}/>
             </div>
             <div className="delete option">
                  <TbTrashFilled  onClick={()=>setToggle(!toggle)}/>
