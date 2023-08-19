@@ -3,8 +3,8 @@ import { Tooltip } from "react-tooltip";
 import { styled } from "styled-components";
 
 
-export function LikeComponent(){
-    const[isLiked, setIsLiked] = useState(false);
+export function LikeComponent(props){
+    const{isLiked, setIsLiked} = props;
     const detail = `Maria João e outras 12 pessoas`;
     const handleLike = ()=>{
         setIsLiked(!isLiked);

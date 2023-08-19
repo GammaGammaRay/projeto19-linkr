@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom"
 import useAuth from "../hooks/useAuth";
 import { IoIosArrowUp } from "react-icons/io"
 import SearchBar from "./SearchBar";
-
 function Nav() {
   
   const navigate = useNavigate()
