@@ -22,7 +22,7 @@ export default function PostForm() {
 //CARREGAR POSTS PUBLICADOS (20 mais recentes);
 useEffect(() => {
   axios
-    .get(`${process.env.REACT_APP_API_URL}/posts`, config)
+    .get(`${process.env.API_URL}/posts`, config)
     .then((res) => {
 
       if (Array.isArray(res.data.results)) { 
@@ -63,7 +63,7 @@ useEffect(() => {
 
   try {
       await axios.post(
-          `${process.env.REACT_APP_API_URL}/posts`,
+          `${process.env.API_URL}/posts`,
           {
               url: url,
               description: description,
@@ -76,13 +76,13 @@ useEffect(() => {
       
     //POSTS ATUALIZADOS;
       const updatedPosts = await axios.get(
-          `${process.env.REACT_APP_API_URL}/posts`, config);
+          `${process.env.API_URL}/posts`, config);
 
-      const sortPosts = updatedPosts.data.sort((i, j) => j.id - i.id);
-      const renderPosts = sortPosts.slice(0, 20);
+      const sortedPosts = updatedPosts.data.sort((i, j) => j.id - i.id);
+      const rendersPosts = sortedPosts.slice(0, 20);
 
-      setPosts(renderPosts);
-      setEmptyPage(renderPosts.length === 0);
+      setPosts(rendersPosts);
+      setEmptyPage(rendersPosts.length === 0);
       setUrl("");
       setDescription("");
   }
