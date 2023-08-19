@@ -1,3 +1,4 @@
+
 import React, { useRef, useState } from "react"
 import { styled } from "styled-components"
 import LinkPost from "./LinkPost.component"
@@ -7,6 +8,7 @@ import { EditOrDelete } from "./Post.Components/EditOrDelete"
 
 
 export default function TimelinePostItem() {
+
   const strign = `Lorem ipsum dolor est bla bla bla etc etc e tals Muito maneiro esse tutorial de Material UI com React, deem uma olhada!`
 
   const[isLiked, setIsLiked] = useState(false); 
@@ -46,6 +48,7 @@ export default function TimelinePostItem() {
 
       <TimeLinePostRight>
         <EditOrDelete
+
             textRef={textRef}
             toggle={toggle}
             setToggle={setToggle}
@@ -75,7 +78,6 @@ export default function TimelinePostItem() {
             ) : (<>
               <p>{textValue}</p></>
             )}
-        
         <LinkPost />
       </TimeLinePostRight>
 
