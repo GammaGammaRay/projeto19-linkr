@@ -76,6 +76,7 @@ useEffect(() => {
       );
     });
 
+// eslint-disable-next-line
 }, []);
 
 console.log(url)
@@ -103,7 +104,8 @@ console.log(url)
     setPublishing(false);
     alert("There was an error publishing your link.");
   } 
-
+  
+// eslint-disable-next-line
 }, []);  
 
   
