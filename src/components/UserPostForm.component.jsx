@@ -99,12 +99,24 @@ console.log(url)
       );
       setUrl("");
       setDescription("");
+
+      const updatedPostsResponse = await axios.get(
+        `${process.env.API_URL}/posts`,
+        config
+      );
+      const sortedPosts = updatedPostsResponse.data.sort((a, b) => b.id - a.id);
+      const recentPosts = sortedPosts.slice(0, 20);
+
+      setPosts(recentPosts);
+      setEmptyPage(recentPosts.length === 0);
+      setUrl("");
+      setDescription("");
   }
   catch (err) {
     setPublishing(false);
     alert("There was an error publishing your link.");
-  } 
-  
+  }
+
 // eslint-disable-next-line
 }, []);  
 
