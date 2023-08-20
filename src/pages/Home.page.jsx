@@ -12,10 +12,10 @@ export default function Home() {
     <Nav />
 
     <TimelineContainer>
+
       <h1>timeline</h1>
       <UserPostForm />
-      <TimelinePosts />
-      <TimelinePosts />
+      
     </TimelineContainer>
 
     <SideBarContainer>
