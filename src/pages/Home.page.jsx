@@ -1,6 +1,5 @@
 import { styled } from "styled-components";
-import UserPostForm from "../components/TimeLine/UserPostForm.component";
-import TimelinePosts from "../components/TimeLine/TimelinePostList.component";
+import TimelinePosts from "../components/TimelinePostList.component";
 import TrendingTags from "../components/TrendingTags.component";
 import Nav from "../components/Nav.component";
 
@@ -12,8 +11,6 @@ export default function Home() {
 
     <TimelineContainer>
       <h1>timeline</h1>
-      <UserPostForm />
-      <TimelinePosts />
       <TimelinePosts />
     </TimelineContainer>
 
