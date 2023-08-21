@@ -2,10 +2,8 @@ import React, { useEffect, useState } from "react";
 import TimelinePostItem from "./TimelinePostItem.component";
 import useAuth from "../hooks/useAuth";
 import axios from "axios";
-
-function HashtagPosts({tagName}) {
   
-
+function HashtagPosts({ tagName }) {
   const API_URL = process.env.REACT_APP_API_URL;
 
   const { token } = useAuth();
@@ -22,24 +20,17 @@ function HashtagPosts({tagName}) {
     axios
       .get(`${API_URL}/hashtag/${tagName}`, config)
       .then((res) => {
-        if (Array.isArray(res.data.results)) {
-          setPosts(res.data);
-          setLoading(false);
-        } else {
-          // console.error(res.data);
-          setError(true);
-          setLoading(false);
-          alert(
-            "An error occurred while trying to fetch the posts, please refresh the page"
-          );
-        }
+        console.log(res.data);
+
+        setPosts(res.data);
+        setLoading(false);
       })
       .catch((err) => {
         // console.error(err);
         setError(true);
         setLoading(false);
         alert(
-          "An error occurred while trying to fetch the posts, please refresh the page"
+          "An error occurred while trying to fetch the hashtag's posts, please refresh the page"
         );
       });
   }, []);
