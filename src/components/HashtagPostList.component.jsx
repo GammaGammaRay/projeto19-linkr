@@ -3,7 +3,9 @@ import TimelinePostItem from "./TimelinePostItem.component";
 import useAuth from "../hooks/useAuth";
 import axios from "axios";
 
-function TimelinePosts() {
+function HashtagPosts({tagName}) {
+  
+
   const API_URL = process.env.API_URL || "http://localhost:5000";
 
   const { token } = useAuth();
@@ -14,16 +16,17 @@ function TimelinePosts() {
   const [error, setError] = useState(false);
   const [emptyPage, setEmptyPage] = useState(false);
 
+  console.log(tagName);
+
   useEffect(() => {
     axios
-      .get(`${API_URL}/posts`, config)
+      .get(`${API_URL}/hashtag/${tagName}`, config)
       .then((res) => {
-        console.log(res.data.results)
         if (Array.isArray(res.data.results)) {
-          setPosts(res.data.results);
+          setPosts(res.data);
           setLoading(false);
         } else {
-          console.error(res.data);
+          // console.error(res.data);
           setError(true);
           setLoading(false);
           alert(
@@ -32,7 +35,7 @@ function TimelinePosts() {
         }
       })
       .catch((err) => {
-        console.error(err);
+        // console.error(err);
         setError(true);
         setLoading(false);
         alert(
@@ -54,4 +57,4 @@ function TimelinePosts() {
   );
 }
 
-export default TimelinePosts;
+export default HashtagPosts;

@@ -1,62 +1,57 @@
+import React, { useRef, useState } from "react";
+import { styled } from "styled-components";
+import LinkPost from "./LinkPost.component";
+import { LikeComponent } from "./Post.Components/Like.component";
+import { EditOrDelete } from "./Post.Components/EditOrDelete";
 
-import React, { useRef, useState } from "react"
-import { styled } from "styled-components"
-import LinkPost from "./LinkPost.component"
-import { LikeComponent } from "./Post.Components/Like.component"
-import { EditOrDelete } from "./Post.Components/EditOrDelete"
+export default function TimelinePostItem({post}) {
 
-
-
-export default function TimelinePostItem() {
-
-  const strign = `Lorem ipsum dolor est bla bla bla etc etc e tals Muito maneiro esse tutorial de Material UI com React, deem uma olhada!`
-
-  const[isLiked, setIsLiked] = useState(false); 
+  const {description, link, userName} = post;
+  
+  const textRef = useRef(null);
+  const [isLiked, setIsLiked] = useState(false);
   const [toggle, setToggle] = useState(false);
   const [editing, setEditing] = useState(false);
-  const textRef = useRef(null);
-  const [textValue, setTextValue] = useState(strign);
+  const [textValue, setTextValue] = useState("");
   const handleEditClick = () => {
     setEditing(!editing);
   };
- 
+  
   const handleKey = (e) => {
     console.log(e);
-    if(e.keyCode === 27)return setEditing(!editing);
-    if(e.keyCode !==13)return;
-
+    if (e.keyCode === 27) return setEditing(!editing);
+    if (e.keyCode !== 13) return;
+    
     setTextValue(textRef.current.value);
     setEditing(false);
   };
-
+  
+  const string = `Lorem ipsum dolor est bla bla bla etc etc e tals Muito maneiro esse tutorial de Material UI com React, deem uma olhada!`;
   const authorImagePlaceholder =
-    "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTfeiK25FERClFs4W7YW5U9uN3EgWX1istoqeFeN_IPFLBGOvaC"
+    "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTfeiK25FERClFs4W7YW5U9uN3EgWX1istoqeFeN_IPFLBGOvaC";
 
   return (
     <TimelinePost>
-
       <TimeLinePostLeft>
-
         <AuthorImage src={authorImagePlaceholder} />
 
-        < LikeComponent
+        {/* < LikeComponent
             isLiked={isLiked}
             setIsLiked={setIsLiked}
-        />
-
+        /> */}
       </TimeLinePostLeft>
 
       <TimeLinePostRight>
-        <EditOrDelete
+        {/* <EditOrDelete
 
             textRef={textRef}
             toggle={toggle}
             setToggle={setToggle}
             handleEditClick={handleEditClick}
-        />
-        <h2>Juvenal Juvêncio</h2>       
+        /> */}
+        <h2>{userName}</h2>
 
-            {editing ? (
+        {/* {editing ? (
               <>
                 <textarea
                     ref={textRef} 
@@ -77,12 +72,13 @@ export default function TimelinePostItem() {
   
             ) : (<>
               <p>{textValue}</p></>
-            )}
+            )} */}
+
+        <p>{description}</p>
         <LinkPost />
       </TimeLinePostRight>
-
     </TimelinePost>
-  )
+  );
 }
 
 const TimelinePost = styled.div`
@@ -99,7 +95,7 @@ const TimelinePost = styled.div`
   padding: 10px;
   margin-bottom: 20px;
   //border: 1px solid red;
-`
+`;
 
 const TimeLinePostLeft = styled.div`
   width: 10%;
@@ -107,7 +103,7 @@ const TimeLinePostLeft = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 10px;
-`
+`;
 const TimeLinePostRight = styled.div`
   display: flex;
   flex-direction: column;
@@ -119,28 +115,25 @@ const TimeLinePostRight = styled.div`
     font-weight: 500;
   }
   p {
-    
     font-size: 12px;
     margin-top: 12px;
     margin-bottom: 12px;
     font-size: 20px;
     color: #b7b7b7;
-    
   }
-  .description{
+  .description {
     background-color: white;
-    border-radius:12px ;
+    border-radius: 12px;
     height: 10%;
     width: 96.6%;
 
-    margin:6% 0;
+    margin: 6% 0;
   }
-`
+`;
 
 const AuthorImage = styled.img`
   width: 100%;
   aspect-ratio: 1/1;
   object-fit: cover;
   border-radius: 100%;
-`
-
+`;

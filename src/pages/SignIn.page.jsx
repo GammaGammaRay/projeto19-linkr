@@ -32,10 +32,10 @@ function SignIn() {
       const response = await api.signIn(data);    
       // const userData = await api.getUserById(response.data.id); // Endpoint ainda nào existe.
 
-      const mockUserData = {profileUrl: "", username: ""};
+      const userData = response.data
 
-      auth.login(mockUserData, response.data.token); 
-      navigate("/timeline");      
+      auth.login(userData, response.data.token); 
+      navigate("/home");      
 
     } catch (error) {
       if(error.response.status === 404) alert("Email não encontrado!");
