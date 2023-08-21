@@ -8,10 +8,11 @@ import { useLocation, useNavigate } from "react-router-dom";
 import userIcon from "../assets/images/icons/userIcon.jpeg";
 import useAuth from "../hooks/useAuth";
 import { Link } from "react-router-dom";
+import reactStringReplace from "react-string-replace";
 
-export default function TimelinePostItem({post}) {
-  const {description, link, userName} = post;
-  console.log(description)
+export default function TimelinePostItem({ post }) {
+  const { description, link, userName } = post;
+  console.log(description);
   const { auth } = useAuth();
   const imageUrl = auth.profileUrl;
   const textRef = useRef(null);
@@ -31,29 +32,25 @@ export default function TimelinePostItem({post}) {
     setTextValue(textRef.current.value);
     setEditing(false);
   };
-  
+
   function handleClick() {
     navigate(`/user/${post.id}`);
   }
 
-
-
   const convertHashtagsToLinks = (text) => {
     const regex = /#(\w+)/g;
-    const parts = text.split(regex);
-    
-    return parts.map((part, index) => {
-      if (part.match(regex)) {
-        const tagName = part.substring(1);
-        return <StyledLink to={`/hashtag/${tagName}`} key={index}>#{tagName}</StyledLink>;
-      } else {
-        return part;
-      }
-    });
+    return reactStringReplace(text, regex, (match, i) => (
+      <span key={i}>
+        <StyledLink to={`/hashtag/${match}`}>
+          #{match}
+        </StyledLink>
+      </span>
+    ));
   };
 
   const descriptionConvertedHashtags = convertHashtagsToLinks(description);
-  console.log(descriptionConvertedHashtags)
+
+  console.log(descriptionConvertedHashtags);
   return (
     <TimelinePost>
       <TimeLinePostLeft>
@@ -74,7 +71,9 @@ export default function TimelinePostItem({post}) {
             handleEditClick={handleEditClick}
         /> */}
 
-        <h2 onClick={handleClick} data-test="username">{userName}</h2>
+        <h2 onClick={handleClick} data-test="username">
+          {userName}
+        </h2>
 
         {/* {editing ? (
               <>
@@ -100,7 +99,7 @@ export default function TimelinePostItem({post}) {
             )} */}
 
         <p data-test="description">{convertHashtagsToLinks(description)}</p>
-        <LinkPost post={post}/>
+        <LinkPost post={post} />
       </TimeLinePostRight>
     </TimelinePost>
   );
@@ -169,4 +168,4 @@ const AuthorImage = styled.img`
 const StyledLink = styled(Link)`
   font-weight: 700;
   cursor: pointer;
-`
+`;

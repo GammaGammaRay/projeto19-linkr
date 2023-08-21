@@ -61,7 +61,6 @@ const TrendingTagsContainer = styled.div`
   border-radius: 16px;
   background-color: #171717;
   box-sizing: border-box;
-  /* padding: 8px; */
   left: 0;
 
   h2 {
