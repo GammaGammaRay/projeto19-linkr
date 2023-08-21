@@ -5,6 +5,7 @@ import useAuth from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 
 export default function PostForm() {
+  const API_URL = process.env.API_URL || "http://localhost:5000";
  
   const { token, auth } = useAuth();
   const navigate = useNavigate();
@@ -23,9 +24,9 @@ export default function PostForm() {
     const config = { headers: { Authorization: `Bearer ${token}` } };
 
     useEffect(() => {
-      console.log(`${process.env.API_URL}/posts`)
+      console.log(`${API_URL}/posts`)
       axios
-        .get(`${process.env.API_URL}/posts`, config)
+        .get(`${API_URL}/posts`, config)
         .then((res) => {
           if (Array.isArray(res.data.results)) { 
             const sortPosts = res.data.results.sort((a, b) => b.id - a.id);
@@ -55,8 +56,8 @@ export default function PostForm() {
 
  //PUBLICAR POSTS;
  const handlePost = useCallback(async (e) => {
-  console.log("Post url: " +url)
   e.preventDefault()
+
   if (!url) {
     alert("Please, enter the url of your post!");
   }
@@ -64,7 +65,7 @@ export default function PostForm() {
 
   try {
       await axios.post(
-          `${process.env.API_URL}/posts`,
+          `${API_URL}/posts`,
           {
               link: url,
               description: description,
@@ -74,7 +75,7 @@ export default function PostForm() {
       setDescription("");
 
       const updatedPostsResponse = await axios.get(
-        `${process.env.API_URL}/posts`,
+        `${API_URL}/posts`,
         config
       );
       const sortedPosts = updatedPostsResponse.data.sort((a, b) => b.id - a.id);
