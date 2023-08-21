@@ -31,8 +31,7 @@ function TrendingTags() {
   }, []);
 
   const handleTagClick = (tagName) => {
-    
-    navigate(`/hashtag/${tagName}`);
+    navigate(`/hashtag/${tagName.replace(/^#/, '')}`);
   };
 
   return (
@@ -42,7 +41,7 @@ function TrendingTags() {
       <TrendingTagsContainer>
         {trendingTags.map((tag, index) => (
           <Tag data-test="hashtag" key={index} onClick={() => handleTagClick(tag)}>
-            {tag}
+            #{tag}
           </Tag>
         ))}
       </TrendingTagsContainer>
@@ -62,7 +61,6 @@ const TrendingTagsContainer = styled.div`
   border-radius: 16px;
   background-color: #171717;
   box-sizing: border-box;
-  /* padding: 8px; */
   left: 0;
 
   h2 {

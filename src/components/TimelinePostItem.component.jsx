@@ -7,9 +7,10 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import userIcon from "../assets/images/icons/userIcon.jpeg";
 import useAuth from "../hooks/useAuth";
+import { Link } from "react-router-dom";
+import reactStringReplace from "react-string-replace";
 
-export default function TimelinePostItem({post}) {
-
+export default function TimelinePostItem({ post }) {
   const {description, link, userName, profileUrl} = post;
   const { auth } = useAuth();
   const textRef = useRef(null);
@@ -23,21 +24,29 @@ export default function TimelinePostItem({post}) {
   const navigate = useNavigate();
 
   const handleKey = (e) => {
-    console.log(e);
     if (e.keyCode === 27) return setEditing(!editing);
     if (e.keyCode !== 13) return;
 
     setTextValue(textRef.current.value);
     setEditing(false);
   };
-  
+
   function handleClick() {
     navigate(`/user/${post.userId}`);
   }
 
-  const string = `Lorem ipsum dolor est bla bla bla etc etc e tals Muito maneiro esse tutorial de Material UI com React, deem uma olhada!`;
-  const authorImagePlaceholder =
-    "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTfeiK25FERClFs4W7YW5U9uN3EgWX1istoqeFeN_IPFLBGOvaC";
+  const convertHashtagsToLinks = (text) => {
+    const regex = /#(\w+)/g;
+    return reactStringReplace(text, regex, (match, i) => (
+      <span key={i}>
+        <StyledLink to={`/hashtag/${match}`}>
+          #{match}
+        </StyledLink>
+      </span>
+    ));
+  };
+
+  const descriptionConvertedHashtags = convertHashtagsToLinks(description);
 
   return (
     <TimelinePost>
@@ -59,7 +68,9 @@ export default function TimelinePostItem({post}) {
             handleEditClick={handleEditClick}
         /> */}
 
-        <h2 onClick={handleClick} data-test="username">{userName}</h2>
+        <h2 onClick={handleClick} data-test="username">
+          {userName}
+        </h2>
 
         {/* {editing ? (
               <>
@@ -84,8 +95,8 @@ export default function TimelinePostItem({post}) {
               <p>{textValue}</p></>
             )} */}
 
-        <p data-test="description">{description}</p>
-        <LinkPost post={post}/>
+        <p data-test="description">{convertHashtagsToLinks(description)}</p>
+        <LinkPost post={post} />
       </TimeLinePostRight>
     </TimelinePost>
   );
@@ -149,4 +160,9 @@ const AuthorImage = styled.img`
   aspect-ratio: 1/1;
   object-fit: cover;
   border-radius: 100%;
+`;
+
+const StyledLink = styled(Link)`
+  font-weight: 700;
+  cursor: pointer;
 `;
