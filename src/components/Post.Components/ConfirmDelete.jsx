@@ -11,7 +11,7 @@ export function ConfirmDelete(props){
 
 
     const handleConfirm = ()=>{
-        axios.post(`${process.env.API_URL}/deletePost`,{userId: auth.userId , id } ,config)
+        axios.post(`${process.env.REACT_APP_API_URL}/deletePost`,{userId: auth.userId , id } ,config)
             .then(res=>{
                 console.log(res)
             }).catch(err=>{
