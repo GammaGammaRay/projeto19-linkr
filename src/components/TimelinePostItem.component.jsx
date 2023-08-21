@@ -5,9 +5,14 @@ import { LikeComponent } from "./Post.Components/Like.component";
 import { EditOrDelete } from "./Post.Components/EditOrDelete";
 import { useLocation, useNavigate } from "react-router-dom";
 
-export default function TimelinePostItem({ post }) {
-  const { description, link, userName } = post;
+import userIcon from "../assets/images/icons/userIcon.jpeg";
+import useAuth from "../hooks/useAuth";
 
+export default function TimelinePostItem({post}) {
+
+  const {description, link, userName} = post;
+  const { auth } = useAuth();
+  const imageUrl = auth.profileUrl;
   const textRef = useRef(null);
   const [isLiked, setIsLiked] = useState(false);
   const [toggle, setToggle] = useState(false);
@@ -26,7 +31,7 @@ export default function TimelinePostItem({ post }) {
     setTextValue(textRef.current.value);
     setEditing(false);
   };
-
+  
   function handleClick() {
     navigate(`/user/${post.id}`);
   }
@@ -40,7 +45,7 @@ export default function TimelinePostItem({ post }) {
   return (
     <TimelinePost>
       <TimeLinePostLeft>
-        <AuthorImage src={authorImagePlaceholder} />
+        <AuthorImage src={!imageUrl ? userIcon : imageUrl} />
 
         {/* < LikeComponent
             isLiked={isLiked}
@@ -56,7 +61,8 @@ export default function TimelinePostItem({ post }) {
             setToggle={setToggle}
             handleEditClick={handleEditClick}
         /> */}
-        <h2 onClick={handleClick}>{userName}</h2>
+
+        <h2 onClick={handleClick} data-test="username">{userName}</h2>
 
         {/* {editing ? (
               <>
@@ -81,7 +87,7 @@ export default function TimelinePostItem({ post }) {
               <p>{textValue}</p></>
             )} */}
 
-        <p>{description}</p>
+        <p data-test="description">{description}</p>
         <LinkPost />
       </TimeLinePostRight>
     </TimelinePost>

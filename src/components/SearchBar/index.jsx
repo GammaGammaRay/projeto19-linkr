@@ -37,6 +37,7 @@ export default function SearchBar() {
     <ComponentContainer>
       <SearchBarWrapper>
         <DebounceInput
+          data-test="search"
           ref={inputRef}
           minLength={3}
           debounceTimeout={30}
@@ -52,6 +53,7 @@ export default function SearchBar() {
         <SearchResultsWrapper>
           {searchResults.map((result) => (
             <SearchResultCard
+              data-test="user-search"
               key={result.id}
               id={result.id}
               profileUrl={result.profileUrl}
