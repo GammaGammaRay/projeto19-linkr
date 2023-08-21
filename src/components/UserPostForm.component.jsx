@@ -18,7 +18,7 @@ export default function PostForm() {
 
 
   function handlePost(e) {
-
+    
     if (!url) {
       alert("Please, enter the URL of your post!");
     } else {
@@ -38,6 +38,7 @@ export default function PostForm() {
           setDescription("");
         })
         .catch((error) => {
+          console.log(error)
           alert("There was an error publishing your link.");
         })
         .finally(() => {

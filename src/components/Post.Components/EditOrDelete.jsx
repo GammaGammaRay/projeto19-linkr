@@ -4,12 +4,13 @@ import {TbTrashFilled} from 'react-icons/tb';
 import {PiPencilBold} from 'react-icons/pi';
 
 export function EditOrDelete(props){
-    const{toggle, setToggle, handleEditClick} = props;
+    const{toggle, setToggle, handleEditClick, id} = props;
 
 
     return(
         <CsEditOrDelete>
             <ConfirmDelete
+                id={id}
                 toggle={toggle}
                 setToggle={setToggle}
             />

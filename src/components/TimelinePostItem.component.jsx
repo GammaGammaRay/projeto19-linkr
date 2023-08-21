@@ -10,16 +10,18 @@ import useAuth from "../hooks/useAuth";
 import { Link } from "react-router-dom";
 import reactStringReplace from "react-string-replace";
 
+  
+
 export default function TimelinePostItem({ post }) {
-  const {description, link, userName, profileUrl} = post;
+  const {description, link, userName, profileUrl, id} = post;
   const { auth } = useAuth();
   const textRef = useRef(null);
   const [isLiked, setIsLiked] = useState(false);
   const [toggle, setToggle] = useState(false);
   const [editing, setEditing] = useState(false);
-  const [textValue, setTextValue] = useState("");
+  const [textValue, setTextValue] = useState(description);
   const handleEditClick = () => {
-    setEditing(!editing);
+      setEditing(!editing);
   };
   const navigate = useNavigate();
 
@@ -53,26 +55,27 @@ export default function TimelinePostItem({ post }) {
       <TimeLinePostLeft>
         <AuthorImage src={!profileUrl ? userIcon : profileUrl} />
 
-        {/* < LikeComponent
+        < LikeComponent
+            idPost={id}
             isLiked={isLiked}
             setIsLiked={setIsLiked}
-        /> */}
+        />
       </TimeLinePostLeft>
 
       <TimeLinePostRight>
-        {/* <EditOrDelete
-
+        <EditOrDelete
+            id={id}
             textRef={textRef}
             toggle={toggle}
             setToggle={setToggle}
             handleEditClick={handleEditClick}
-        /> */}
+        />
 
         <h2 onClick={handleClick} data-test="username">
           {userName}
         </h2>
 
-        {/* {editing ? (
+        {editing ? (
               <>
                 <textarea
                     ref={textRef} 
@@ -93,7 +96,7 @@ export default function TimelinePostItem({ post }) {
   
             ) : (<>
               <p>{textValue}</p></>
-            )} */}
+            )}
 
         <p data-test="description">{convertHashtagsToLinks(description)}</p>
         <LinkPost post={post} />

@@ -1,10 +1,22 @@
 import { useState } from "react";
 import { styled } from "styled-components";
+import useAuth from "../../hooks/useAuth";
+import axios from "axios";
+
 
 export function ConfirmDelete(props){
-    const{toggle, setToggle} = props;
+    const{toggle, setToggle, id} = props;
+    const {token, auth} = useAuth();
+    const config = { headers: { Authorization: `Bearer ${token}` } };
+
 
     const handleConfirm = ()=>{
+        axios.post(`${process.env.REACT_APP_API_URL}/deletePost`,{userId: auth.userId , id } ,config)
+            .then(res=>{
+                console.log(res)
+            }).catch(err=>{
+                console.log(err)
+            })
         setToggle(!toggle);
     }
     return(
