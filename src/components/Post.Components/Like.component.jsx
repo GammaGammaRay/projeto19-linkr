@@ -11,7 +11,7 @@ export function LikeComponent(props){
     const{isLiked, setIsLiked, idPost} = props;
     const detail = `Maria João e outras 12 pessoas`;
     const handleLike = ()=>{
-        axios.post(`${process.env.API_URL}/handleLIke`,{id:idPost, userId: auth.userId})
+        axios.post(`${process.env.API_URL}/handleLIke`,{id:idPost, userId: auth.userId}, config)
         .then(res=>{
           console.log(res);
           setIsLiked(!isLiked);
