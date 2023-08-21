@@ -10,9 +10,8 @@ import useAuth from "../hooks/useAuth";
 
 export default function TimelinePostItem({post}) {
 
-  const {description, link, userName} = post;
+  const {description, link, userName, profileUrl} = post;
   const { auth } = useAuth();
-  const imageUrl = auth.profileUrl;
   const textRef = useRef(null);
   const [isLiked, setIsLiked] = useState(false);
   const [toggle, setToggle] = useState(false);
@@ -33,19 +32,17 @@ export default function TimelinePostItem({post}) {
   };
   
   function handleClick() {
-    navigate(`/user/${post.id}`);
+    navigate(`/user/${post.userId}`);
   }
 
   const string = `Lorem ipsum dolor est bla bla bla etc etc e tals Muito maneiro esse tutorial de Material UI com React, deem uma olhada!`;
   const authorImagePlaceholder =
     "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTfeiK25FERClFs4W7YW5U9uN3EgWX1istoqeFeN_IPFLBGOvaC";
 
-  console.log(post);
-
   return (
     <TimelinePost>
       <TimeLinePostLeft>
-        <AuthorImage src={!imageUrl ? userIcon : imageUrl} />
+        <AuthorImage src={!profileUrl ? userIcon : profileUrl} />
 
         {/* < LikeComponent
             isLiked={isLiked}
