@@ -1,4 +1,4 @@
-import  styled  from "styled-components";
+import styled from "styled-components";
 import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import useAuth from "../hooks/useAuth";
@@ -6,135 +6,91 @@ import { useNavigate } from "react-router-dom";
 
 export default function PostForm() {
   const API_URL = process.env.API_URL || "http://localhost:5000";
- 
+
   const { token, auth } = useAuth();
-  const navigate = useNavigate();
+  const config = { headers: { Authorization: `Bearer ${token}` } };
   const imageUrl = auth.profileUrl;
 
   const [url, setUrl] = useState("");
   const [description, setDescription] = useState("");
-  const [error, setError] = useState(false);
-  const [emptyPage, setEmptyPage] = useState(false);
   const [publishing, setPublishing] = useState(false);
   const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
+
   const authorImagePlaceholder =
     "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTfeiK25FERClFs4W7YW5U9uN3EgWX1istoqeFeN_IPFLBGOvaC";
 
-    const config = { headers: { Authorization: `Bearer ${token}` } };
+  function handlePost(e) {
 
-    useEffect(() => {
-      console.log(`${API_URL}/posts`)
+    if (!url) {
+      alert("Please, enter the URL of your post!");
+    } else {
+      setPublishing(true);
+
       axios
-        .get(`${API_URL}/posts`, config)
-        .then((res) => {
-          if (Array.isArray(res.data.results)) { 
-            const sortPosts = res.data.results.sort((a, b) => b.id - a.id);
-            const recentPosts = sortPosts.slice(0, 20);
-            setPosts(recentPosts);
-            setEmptyPage(recentPosts.length === 0);
-            setLoading(false);      
-          } else {
-            console.error(res.data);
-            setError(true);
-            setLoading(false);
-            alert(
-              "An error occurred while trying to fetch the posts, please refresh the page"
-            );
-          }
-        })
-        .catch((err) => {
-          console.error(err);
-          setError(true);
-          setLoading(false);
-          alert(
-            "An error occurred while trying to fetch the posts, please refresh the page"
-          );
-        });
-    
-    }, []);
-
- //PUBLICAR POSTS;
- const handlePost = useCallback(async (e) => {
-  e.preventDefault()
-
-  if (!url) {
-    alert("Please, enter the url of your post!");
-  }
-  setPublishing(true);
-
-  try {
-      await axios.post(
+        .post(
           `${API_URL}/posts`,
           {
-              link: url,
-              description: description,
+            link: url,
+            description: description,
+            author: auth.userId
           },
           config
-      );
-      setDescription("");
-
-      const updatedPostsResponse = await axios.get(
-        `${API_URL}/posts`,
-        config
-      );
-      const sortedPosts = updatedPostsResponse.data.sort((a, b) => b.id - a.id);
-      const recentPosts = sortedPosts.slice(0, 20);
-
-      setPosts(recentPosts);
-      setEmptyPage(recentPosts.length === 0);
-      setDescription("");
-  }
-  catch (err) {
-    console.log(err)
-    setPublishing(false);
-    alert("There was an error publishing your link.");
+        )
+        .then(() => {
+          setUrl("");
+          setDescription("");
+        })
+        .catch((error) => {
+          alert("There was an error publishing your link.");
+        })
+        .finally(() => {
+          setPublishing(false);
+        });
+    }
   }
 
-}, []);  
-    
   return (
-      <PostContainer>
+    <PostContainer>
+      <ImageBox>
+        <UserImage src={authorImagePlaceholder} />
+      </ImageBox>
 
-        <ImageBox>
-          <UserImage src={authorImagePlaceholder} />
-        </ImageBox>
+      <PublishBox>
+        <h2>What are you going to share today?</h2>
 
-        <PublishBox>
-          <h2>What are you going to share today?</h2>
+        <FormContainer onSubmit={handlePost}>
+          <input
+            data-test="link"
+            className="url"
+            type="text"
+            placeholder="http://..."
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+            /*keyPress={buttonPressed}*/
+            disabled={publishing}
+          />
+          <PostText
+            data-test="description"
+            placeholder="What are you publishing?"
+            className="description"
+            type="text"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            /*keyPress={buttonPressed}*/
+            disabled={publishing}
+          />
 
-          <FormContainer onSubmit={handlePost}>
-            <input      
-                data-test="link"
-                className="url"
-                type="text"
-                placeholder="http://..."
-                value={url}
-                onChange={(e) => setUrl(e.target.value)}
-                /*keyPress={buttonPressed}*/
-                disabled={publishing}
-             />
-            <PostText 
-                data-test="description"
-                placeholder="What are you publishing?"
-                className="description"
-                type="text"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                /*keyPress={buttonPressed}*/
-                disabled={publishing}/>
-
-            <button
-                data-test="publish-btn"
-                /*onClick={buttonPressed}*/
-                disabled={publishing}
-              >
-                {publishing ? "Publishing..." : "Publish"}
-            </button>
-          </FormContainer>
-        </PublishBox>
-      </PostContainer>
-  )
+          <button
+            data-test="publish-btn"
+            /*onClick={buttonPressed}*/
+            disabled={publishing}
+          >
+            {publishing ? "Publishing..." : "Publish"}
+          </button>
+        </FormContainer>
+      </PublishBox>
+    </PostContainer>
+  );
 }
 
 const PostContainer = styled.div`
@@ -151,7 +107,7 @@ const PostContainer = styled.div`
   background-color: white;
   padding: 10px;
   margin-bottom: 30px;
-`
+`;
 
 const ImageBox = styled.div`
   width: 10%;
@@ -159,14 +115,14 @@ const ImageBox = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 10px;
-`
+`;
 
 const UserImage = styled.img`
   width: 90%;
   aspect-ratio: 1/1;
   object-fit: cover;
   border-radius: 100%;
-`
+`;
 
 const PublishBox = styled.div`
   width: 100%;
@@ -182,7 +138,7 @@ const PublishBox = styled.div`
     line-height: 24px;
     margin-bottom: 15px;
   }
-`
+`;
 
 const FormContainer = styled.form`
   border: none;
@@ -204,20 +160,19 @@ const FormContainer = styled.form`
   }
   :focus {
     outline: none;
-    border: 1px solid transparent; 
-    box-shadow: 0px 0px 3px 1px #b7b7b7; 
+    border: 1px solid transparent;
+    box-shadow: 0px 0px 3px 1px #b7b7b7;
   }
-  button{
-    background-color: #1877F2;
+  button {
+    background-color: #1877f2;
     border-radius: 5px;
     width: 112px;
     font-family: Lato;
     font-weight: 700;
     font-size: 14px;
     line-height: 16px;
-    
-     }
-`
+  }
+`;
 
 const PostText = styled.textarea`
   width: 100%;
@@ -232,4 +187,4 @@ const PostText = styled.textarea`
   font-family: "Lato";
   font-weight: 300;
   font-size: 16px;
-`
+`;

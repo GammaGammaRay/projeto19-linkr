@@ -32,9 +32,9 @@ function SignIn() {
       const response = await api.signIn(data);    
       // const userData = await api.getUserById(response.data.id); // Endpoint ainda nào existe.
 
-      const mockUserData = {profileUrl: "", username: ""};
+      const userData = response.data
 
-      auth.login(mockUserData, response.data.token); 
+      auth.login(userData, response.data.token); 
       navigate("/timeline");      
 
     } catch (error) {
