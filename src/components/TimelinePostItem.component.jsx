@@ -3,6 +3,7 @@ import { styled } from "styled-components";
 import LinkPost from "./LinkPost.component";
 import { LikeComponent } from "./Post.Components/Like.component";
 import { EditOrDelete } from "./Post.Components/EditOrDelete";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import userIcon from "../assets/images/icons/userIcon.jpeg";
 import useAuth from "../hooks/useAuth";
@@ -10,9 +11,9 @@ import { Link } from "react-router-dom";
 
 export default function TimelinePostItem({post}) {
   const {description, link, userName} = post;
+  console.log(description)
   const { auth } = useAuth();
   const imageUrl = auth.profileUrl;
-  
   const textRef = useRef(null);
   const [isLiked, setIsLiked] = useState(false);
   const [toggle, setToggle] = useState(false);
@@ -21,22 +22,38 @@ export default function TimelinePostItem({post}) {
   const handleEditClick = () => {
     setEditing(!editing);
   };
-  
+  const navigate = useNavigate();
+
   const handleKey = (e) => {
-    console.log(e);
     if (e.keyCode === 27) return setEditing(!editing);
     if (e.keyCode !== 13) return;
-    
+
     setTextValue(textRef.current.value);
     setEditing(false);
   };
   
+  function handleClick() {
+    navigate(`/user/${post.id}`);
+  }
+
+
+
   const convertHashtagsToLinks = (text) => {
-    return text.replace(/#(\w+)/g, '<StyledLink to="/hashtag/$1">#$1</Link>');
+    const regex = /#(\w+)/g;
+    const parts = text.split(regex);
+    
+    return parts.map((part, index) => {
+      if (part.match(regex)) {
+        const tagName = part.substring(1);
+        return <StyledLink to={`/hashtag/${tagName}`} key={index}>#{tagName}</StyledLink>;
+      } else {
+        return part;
+      }
+    });
   };
 
   const descriptionConvertedHashtags = convertHashtagsToLinks(description);
-
+  console.log(descriptionConvertedHashtags)
   return (
     <TimelinePost>
       <TimeLinePostLeft>
@@ -56,7 +73,8 @@ export default function TimelinePostItem({post}) {
             setToggle={setToggle}
             handleEditClick={handleEditClick}
         /> */}
-        <h2 data-test="username">{userName}</h2>
+
+        <h2 onClick={handleClick} data-test="username">{userName}</h2>
 
         {/* {editing ? (
               <>
@@ -81,8 +99,8 @@ export default function TimelinePostItem({post}) {
               <p>{textValue}</p></>
             )} */}
 
-        <p data-test="description">{convertHashtagsToLinks(descriptionConvertedHashtags)}</p>
-        <LinkPost />
+        <p data-test="description">{convertHashtagsToLinks(description)}</p>
+        <LinkPost post={post}/>
       </TimeLinePostRight>
     </TimelinePost>
   );
@@ -120,6 +138,9 @@ const TimeLinePostRight = styled.div`
     line-height: 1.1em;
     font-size: 26px;
     font-weight: 500;
+    &:hover {
+      cursor: pointer;
+    }
   }
   p {
     font-size: 12px;
