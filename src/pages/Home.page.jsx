@@ -15,7 +15,6 @@ export default function Home() {
       <h1>timeline</h1>
       <UserPostForm />
       <TimelinePosts />
-      <TimelinePosts />
     </TimelineContainer>
 
     <SideBarContainer>

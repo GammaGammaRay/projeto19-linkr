@@ -35,7 +35,7 @@ function SignIn() {
       const userData = response.data
 
       auth.login(userData, response.data.token); 
-      navigate("/timeline");      
+      navigate("/home");      
 
     } catch (error) {
       if(error.response.status === 404) alert("Email não encontrado!");

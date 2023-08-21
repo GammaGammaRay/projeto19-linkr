@@ -4,7 +4,9 @@ import LinkPost from "./LinkPost.component";
 import { LikeComponent } from "./Post.Components/Like.component";
 import { EditOrDelete } from "./Post.Components/EditOrDelete";
 
-export default function TimelinePostItem() {
+export default function TimelinePostItem({post}) {
+
+  const {description, link, userName} = post;
   
   const textRef = useRef(null);
   const [isLiked, setIsLiked] = useState(false);
@@ -47,7 +49,7 @@ export default function TimelinePostItem() {
             setToggle={setToggle}
             handleEditClick={handleEditClick}
         /> */}
-        <h2>Juvenal Juvêncio</h2>
+        <h2>{userName}</h2>
 
         {/* {editing ? (
               <>
@@ -72,7 +74,7 @@ export default function TimelinePostItem() {
               <p>{textValue}</p></>
             )} */}
 
-        <p>{textValue}</p>
+        <p>{description}</p>
         <LinkPost />
       </TimeLinePostRight>
     </TimelinePost>
