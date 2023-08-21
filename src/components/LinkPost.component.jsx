@@ -1,32 +1,37 @@
-import React from "react"
-import { styled } from "styled-components"
+import React from "react";
+import { styled } from "styled-components";
+import imageLink from "../assets/images/icons/react.png";
 
-function LinkPost() {
-  const linkImagePlaceholder =
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQR71nuAXwsp7cDILq-93prI73gJhYQ02dEIMDxtG44eA&s"
+function LinkPost({post}) {
 
-  const linkToPlaceholder = "https://www.youtube.com/watch?v=dQw4w9WgXcQa"
+  const {urlTitle, link, urlDescr} = post;
 
   return (
-    <LinkPostContainer href={linkToPlaceholder}>
+    <LinkPostContainer 
+    href={link} 
+    data-test="link"
+    target="_blank"
+    rel="noopener noreferrer">
+
       <LinkPostContainerLeft>
-        <h2>Como aplicar o Material UI em um projeto React</h2>
+        <h2>{urlTitle}</h2>
         <p>
-          Hey! I have moved this tutorial to my personal blog. Same content, new
-          location. Sorry about making you click through to another page.
+          {urlDescr}
         </p>
-        <a href={linkToPlaceholder}>
-          <p>https://medium.com/@pshrmn/a-simple-react-router</p>
+        <a href={link}>
+          <p>{link}</p>
         </a>
       </LinkPostContainerLeft>
       <LinkPostContainerRight>
-        <a href={linkToPlaceholder}>
-          <LinkPostImage src={linkImagePlaceholder} />
+        <a href={link}>
+          <LinkPostImage src={imageLink} />
         </a>
       </LinkPostContainerRight>
+
     </LinkPostContainer>
   )
 }
+
 
 const LinkPostContainer = styled.div`
   width: 100%;

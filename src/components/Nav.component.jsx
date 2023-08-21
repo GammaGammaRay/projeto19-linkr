@@ -33,10 +33,10 @@ function Nav() {
         <SearchBar/>
     </NavMid>
       <NavRight $isHidden={isHidden}>
-        <div>
+        <div data-test="menu">
           <IoIosArrowUp alt="Open close icon" onClick={() => setHidden(!isHidden)} />
-          <img alt="User profile" src={auth.profileUrl}/>
-          <StyledLink $isHidden={isHidden} to="/" onClick={handleSignOut}>
+          <img data-test="avatar" alt="User profile" src={auth.profileUrl}/>
+          <StyledLink data-test="logout" $isHidden={isHidden} to="/" onClick={handleSignOut}>
             Signout
           </StyledLink>
         </div>

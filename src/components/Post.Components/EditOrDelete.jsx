@@ -14,10 +14,10 @@ export function EditOrDelete(props){
                 setToggle={setToggle}
             />
             <div className="edit option">
-                 <PiPencilBold  onClick={handleEditClick}/>
+                 <PiPencilBold data-test="like-btn" onClick={handleEditClick}/>
             </div>
             <div className="delete option">
-                 <TbTrashFilled  onClick={()=>setToggle(!toggle)}/>
+                 <TbTrashFilled data-test="delete-btn" onClick={()=>setToggle(!toggle)}/>
             </div>
         </CsEditOrDelete>
     );
