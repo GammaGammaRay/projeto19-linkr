@@ -51,11 +51,11 @@ function SignIn() {
       <LinkrTitle />
         <FormContainer>
             <form onSubmit={submit}>
-              <input name="email" type="email" placeholder="e-mail" ref={email} />
-              <input name="password" type="password" placeholder="password" ref={password} />
+              <input data-test="email" name="email" type="email" placeholder="e-mail" ref={email} />
+              <input data-test="password" name="password" type="password" placeholder="password" ref={password} />
     
-              <button ref={button} type="submit">Login</button>
-              <Link to={"sign-up"}>First time? Create an account!</Link>
+              <button data-test="login-btn" ref={button} type="submit">Login</button>
+              <Link data-test="sign-up-link" to={"sign-up"}>First time? Create an account!</Link>
             </form>
         </FormContainer>
     </SignInContainer>

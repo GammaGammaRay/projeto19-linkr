@@ -1,8 +1,9 @@
 import styled from "styled-components";
-import { useCallback, useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import useAuth from "../hooks/useAuth";
-import { useNavigate } from "react-router-dom";
+import userIcon from "../assets/images/icons/userIcon.jpeg";
+
 
 export default function PostForm() {
   const API_URL = process.env.API_URL || "http://localhost:5000";
@@ -14,10 +15,7 @@ export default function PostForm() {
   const [url, setUrl] = useState("");
   const [description, setDescription] = useState("");
   const [publishing, setPublishing] = useState(false);
-  const [posts, setPosts] = useState([]);
 
-  const authorImagePlaceholder =
-    "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTfeiK25FERClFs4W7YW5U9uN3EgWX1istoqeFeN_IPFLBGOvaC";
 
   function handlePost(e) {
     
@@ -25,7 +23,6 @@ export default function PostForm() {
       alert("Please, enter the URL of your post!");
     } else {
       setPublishing(true);
-
       axios
         .post(
           `${API_URL}/posts`,
@@ -51,9 +48,9 @@ export default function PostForm() {
   }
 
   return (
-    <PostContainer>
+    <PostContainer data-test="publish-box">
       <ImageBox>
-        <UserImage src={authorImagePlaceholder} />
+        <UserImage src={!imageUrl ? userIcon : imageUrl} />
       </ImageBox>
 
       <PublishBox>
@@ -67,7 +64,6 @@ export default function PostForm() {
             placeholder="http://..."
             value={url}
             onChange={(e) => setUrl(e.target.value)}
-            /*keyPress={buttonPressed}*/
             disabled={publishing}
           />
           <PostText
@@ -77,13 +73,12 @@ export default function PostForm() {
             type="text"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            /*keyPress={buttonPressed}*/
             disabled={publishing}
           />
 
           <button
             data-test="publish-btn"
-            /*onClick={buttonPressed}*/
+            onClick={handlePost}
             disabled={publishing}
           >
             {publishing ? "Publishing..." : "Publish"}

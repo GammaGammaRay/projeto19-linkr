@@ -29,10 +29,10 @@ export function ConfirmDelete(props){
                                 
                 </div>
                 <div className="options">
-                    <div className="no option" onClick={handleConfirm}>
+                    <div data-test="cancel" className="no option" onClick={handleConfirm}>
                         No, go back
                     </div>
-                    <div className="yes option" onClick={handleConfirm}>
+                    <div data-test="confirm"className="yes option" onClick={handleConfirm}>
                         Yes, delete it
                     </div>
                 </div>

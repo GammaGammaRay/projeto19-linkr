@@ -39,6 +39,11 @@ const SideBarContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: start;
+
+  @media screen and (max-width: 480px) {
+    flex-direction: row;
+    display: none;
+  }
 `
 
 const TimelineContainer = styled.div`
@@ -50,5 +55,13 @@ const TimelineContainer = styled.div`
     line-height: 63px;
     margin-bottom: 30px;
     margin-top: 50px;
+  }
+
+  @media (max-width: 480px) {
+    width: 98.5vw;
+  }
+
+  @media screen and (min-width: 650px) {
+    width: 45vw;
   }
 `

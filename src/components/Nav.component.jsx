@@ -18,6 +18,10 @@ function Nav() {
     logout()
   }
 
+  function goBackToHome() {
+    navigate("/home");
+  }
+
   useEffect(() => {
     setLogged(token)
   }, [token])
@@ -27,16 +31,16 @@ function Nav() {
   return (
     <NavContainer>
       <NavLeft>
-        <Linkr>linkr</Linkr>
+        <Linkr onClick={goBackToHome}>linkr</Linkr>
       </NavLeft>
     <NavMid>
         <SearchBar/>
     </NavMid>
       <NavRight $isHidden={isHidden}>
-        <div>
+        <div data-test="menu">
           <IoIosArrowUp alt="Open close icon" onClick={() => setHidden(!isHidden)} />
-          <img alt="User profile" src={auth.profileUrl}/>
-          <StyledLink $isHidden={isHidden} to="/" onClick={handleSignOut}>
+          <img data-test="avatar" alt="User profile" src={auth.profileUrl}/>
+          <StyledLink data-test="logout" $isHidden={isHidden} to="/" onClick={handleSignOut}>
             Signout
           </StyledLink>
         </div>
@@ -147,6 +151,7 @@ const StyledLink = styled(Link)`
 const Linkr = styled.div`
   font-family: "Passion One";
   letter-spacing: 3px;
+  cursor: pointer;
 `
 
 const SearchUsers = styled.input`

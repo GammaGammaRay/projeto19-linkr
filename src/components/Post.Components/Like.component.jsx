@@ -38,7 +38,8 @@ export function LikeComponent(props){
             )}
             
             
-            <div  
+            <div 
+                data-test="counter" 
                 className="text"
                 data-tooltip-id="details"
                 data-tooltip-content={detail}
@@ -46,6 +47,7 @@ export function LikeComponent(props){
                 14 likes
             </div>
             <Tooltip 
+                data-test="tooltip"
                 id="details" 
                 variant="light"
                 place="bottom"

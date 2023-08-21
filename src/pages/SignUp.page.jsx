@@ -45,13 +45,13 @@ function SignUp() {
       <LinkrTitle />
       <FormContainer>
             <form onSubmit={submit}>
-              <input name="email" type="email" placeholder="e-mail" ref={email} />
-              <input name="password" type="password" placeholder="password" ref={password} />
-              <input name="username" type="text" placeholder="username" ref={username} /> 
+              <input data-test="email" name="email" type="email" placeholder="e-mail" ref={email} />
+              <input data-test="password" name="password" type="password" placeholder="password" ref={password} />
+              <input data-test="username" name="username" type="text" placeholder="username" ref={username} /> 
               <input name="profileUrl" type="text" placeholder="picture url" ref={profileUrl} />
     
-              <button ref={button} type="submit">Cadastro</button>
-              <Link to={"/"}>Switch back to login</Link>
+              <button data-test="sign-up-btn" ref={button} type="submit">Cadastro</button>
+              <Link data-test="login-link" to={"/"}>Switch back to login</Link>
             </form>
       </FormContainer>
     </SignUpContainer>

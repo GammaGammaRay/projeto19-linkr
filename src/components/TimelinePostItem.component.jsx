@@ -3,12 +3,18 @@ import { styled } from "styled-components";
 import LinkPost from "./LinkPost.component";
 import { LikeComponent } from "./Post.Components/Like.component";
 import { EditOrDelete } from "./Post.Components/EditOrDelete";
+import { useLocation, useNavigate } from "react-router-dom";
 
-export default function TimelinePostItem({post}) {
+import userIcon from "../assets/images/icons/userIcon.jpeg";
+import useAuth from "../hooks/useAuth";
+import { Link } from "react-router-dom";
+import reactStringReplace from "react-string-replace";
 
-  const {description, link, userName, id} = post;
-  console.log(post)
   
+
+export default function TimelinePostItem({ post }) {
+  const {description, link, userName, profileUrl, id} = post;
+  const { auth } = useAuth();
   const textRef = useRef(null);
   const [isLiked, setIsLiked] = useState(false);
   const [toggle, setToggle] = useState(false);
@@ -17,24 +23,37 @@ export default function TimelinePostItem({post}) {
   const handleEditClick = () => {
       setEditing(!editing);
   };
-  
+  const navigate = useNavigate();
+
   const handleKey = (e) => {
-    console.log(e);
     if (e.keyCode === 27) return setEditing(!editing);
     if (e.keyCode !== 13) return;
-    
+
     setTextValue(textRef.current.value);
     setEditing(false);
   };
-  
-  const string = `Lorem ipsum dolor est bla bla bla etc etc e tals Muito maneiro esse tutorial de Material UI com React, deem uma olhada!`;
-  const authorImagePlaceholder =
-    "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTfeiK25FERClFs4W7YW5U9uN3EgWX1istoqeFeN_IPFLBGOvaC";
+
+  function handleClick() {
+    navigate(`/user/${post.userId}`);
+  }
+
+  const convertHashtagsToLinks = (text) => {
+    const regex = /#(\w+)/g;
+    return reactStringReplace(text, regex, (match, i) => (
+      <span key={i}>
+        <StyledLink to={`/hashtag/${match}`}>
+          #{match}
+        </StyledLink>
+      </span>
+    ));
+  };
+
+  const descriptionConvertedHashtags = convertHashtagsToLinks(description);
 
   return (
     <TimelinePost>
       <TimeLinePostLeft>
-        <AuthorImage src={authorImagePlaceholder} />
+        <AuthorImage src={!profileUrl ? userIcon : profileUrl} />
 
         < LikeComponent
             idPost={id}
@@ -51,7 +70,10 @@ export default function TimelinePostItem({post}) {
             setToggle={setToggle}
             handleEditClick={handleEditClick}
         />
-        <h2>{userName}</h2>
+
+        <h2 onClick={handleClick} data-test="username">
+          {userName}
+        </h2>
 
         {editing ? (
               <>
@@ -76,8 +98,8 @@ export default function TimelinePostItem({post}) {
               <p>{textValue}</p></>
             )}
 
-        <p>{description}</p>
-        <LinkPost />
+        <p data-test="description">{convertHashtagsToLinks(description)}</p>
+        <LinkPost post={post} />
       </TimeLinePostRight>
     </TimelinePost>
   );
@@ -115,6 +137,9 @@ const TimeLinePostRight = styled.div`
     line-height: 1.1em;
     font-size: 26px;
     font-weight: 500;
+    &:hover {
+      cursor: pointer;
+    }
   }
   p {
     font-size: 12px;
@@ -138,4 +163,9 @@ const AuthorImage = styled.img`
   aspect-ratio: 1/1;
   object-fit: cover;
   border-radius: 100%;
+`;
+
+const StyledLink = styled(Link)`
+  font-weight: 700;
+  cursor: pointer;
 `;
