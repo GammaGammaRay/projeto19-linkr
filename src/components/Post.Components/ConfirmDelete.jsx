@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { styled } from "styled-components";
 import useAuth from "../../hooks/useAuth";
+import axios from "axios";
+
 
 export function ConfirmDelete(props){
     const{toggle, setToggle, id} = props;
