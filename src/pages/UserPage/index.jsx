@@ -31,7 +31,6 @@ export default function UserPage() {
 
     promise
       .then((res) => {
-        console.log(res.data.results);
         if (Array.isArray(res.data.results)) {
           setPosts(res.data.results);
           setLoading(false);
@@ -56,7 +55,6 @@ export default function UserPage() {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error loading posts</p>;
-  console.log(posts[0]);
 
   return (
     <UserPageContainer>
@@ -66,11 +64,11 @@ export default function UserPage() {
           <img src={posts[0].profileUrl} alt={posts[0].userName} />
           <h1>{`${posts[0].userName}'s posts`}</h1>
         </PostsHeaderContainer>
-        {posts.map((post) => post.link ? (
+        {posts.length >= 2 ? posts.map((post) => post.link ? (
           <TimelinePostItem data-test="post" key={post.id} post={post} />
         ) 
         :
-        (<></>))}
+        ("")) : <h1>This user has no posts yet</h1>}
       </PostsContainer>
       <SideBarContainer>
         <TrendingTags />
