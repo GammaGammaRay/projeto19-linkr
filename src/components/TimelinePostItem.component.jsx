@@ -11,10 +11,8 @@ import { Link } from "react-router-dom";
 import reactStringReplace from "react-string-replace";
 
 export default function TimelinePostItem({ post }) {
-  const { description, link, userName } = post;
-  console.log(description);
+  const {description, link, userName, profileUrl} = post;
   const { auth } = useAuth();
-  const imageUrl = auth.profileUrl;
   const textRef = useRef(null);
   const [isLiked, setIsLiked] = useState(false);
   const [toggle, setToggle] = useState(false);
@@ -34,7 +32,7 @@ export default function TimelinePostItem({ post }) {
   };
 
   function handleClick() {
-    navigate(`/user/${post.id}`);
+    navigate(`/user/${post.userId}`);
   }
 
   const convertHashtagsToLinks = (text) => {
@@ -50,11 +48,10 @@ export default function TimelinePostItem({ post }) {
 
   const descriptionConvertedHashtags = convertHashtagsToLinks(description);
 
-  console.log(descriptionConvertedHashtags);
   return (
     <TimelinePost>
       <TimeLinePostLeft>
-        <AuthorImage src={!imageUrl ? userIcon : imageUrl} />
+        <AuthorImage src={!profileUrl ? userIcon : profileUrl} />
 
         {/* < LikeComponent
             isLiked={isLiked}

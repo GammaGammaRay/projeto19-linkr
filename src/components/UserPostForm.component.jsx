@@ -23,7 +23,6 @@ export default function PostForm() {
       alert("Please, enter the URL of your post!");
     } else {
       setPublishing(true);
-
       axios
         .post(
           `${API_URL}/posts`,
