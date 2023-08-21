@@ -18,6 +18,10 @@ function Nav() {
     logout()
   }
 
+  function goBackToHome() {
+    navigate("/home");
+  }
+
   useEffect(() => {
     setLogged(token)
   }, [token])
@@ -27,7 +31,7 @@ function Nav() {
   return (
     <NavContainer>
       <NavLeft>
-        <Linkr>linkr</Linkr>
+        <Linkr onClick={goBackToHome}>linkr</Linkr>
       </NavLeft>
     <NavMid>
         <SearchBar/>
@@ -147,6 +151,7 @@ const StyledLink = styled(Link)`
 const Linkr = styled.div`
   font-family: "Passion One";
   letter-spacing: 3px;
+  cursor: pointer;
 `
 
 const SearchUsers = styled.input`
