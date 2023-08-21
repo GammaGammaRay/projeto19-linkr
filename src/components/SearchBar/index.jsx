@@ -43,7 +43,7 @@ export default function SearchBar() {
           onChange={handleInputChange}
           className="search-input"
           placeholder={"Search for people"}
-          onBlur={() => setTimeout(() => setSearchResults([]), 200)}
+          onBlur={() => setTimeout(() => setSearchResults([]), 300)}
           onFocus={handleInputChange}
           data-test="search"
         />
