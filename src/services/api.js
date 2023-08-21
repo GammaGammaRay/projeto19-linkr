@@ -16,6 +16,12 @@ function searchUsers(auth, string) {
   return promise;
 }
 
+function getUserPosts(auth, id) {
+  const promise = axios.get(`${API_URL}/users/${id}/posts`, tokenProvider(auth));
+
+  return promise;
+}
+
 function signIn(payload) {
   const promisse = axios.post(`${API_URL}/signin`, payload);
 
@@ -32,6 +38,7 @@ const api = {
   searchUsers,
   signIn,
   signUp,
+  getUserPosts,
 };
 
 export default api;
