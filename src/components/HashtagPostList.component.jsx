@@ -6,7 +6,7 @@ import axios from "axios";
 function HashtagPosts({tagName}) {
   
 
-  const API_URL = process.env.API_URL || "http://localhost:5000";
+  const API_URL = process.env.REACT_APP_API_URL;
 
   const { token } = useAuth();
   const config = { headers: { Authorization: `Bearer ${token}` } };
