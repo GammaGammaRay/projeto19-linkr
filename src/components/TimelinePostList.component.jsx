@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import TimelinePostItem from "./TimelinePostItem.component";
 import useAuth from "../hooks/useAuth";
 import axios from "axios";
+import loadingImage from "../assets/images/icons/loadingImage.gif";
+import { styled } from "styled-components";
 
-function TimelinePosts() {
+export default function TimelinePosts() {
   const API_URL = process.env.API_URL || "http://localhost:5000";
 
   const { token } = useAuth();
@@ -42,16 +44,36 @@ function TimelinePosts() {
   }, []);
 
   return (
-    <div>
+    <Container>
       {loading ? (
-        <p>Loading...</p>
+         <Image src={loadingImage} alt="Loading..." />
       ) : error ? (
-        <p>Error loading posts</p>
-      ) : (
-        posts.map((post) => <TimelinePostItem key={post.id} post={post} />)
+        <p> An error occurred while trying to fetch the posts, please refresh
+        the page </p>
+      ) : emptyPage ? (
+        <p data-test="message">There are no posts yet</p>
+      ) :  (
+        posts.map((post) => <TimelinePostItem data-test="post" key={post.id} post={post} />)
       )}
-    </div>
+    </Container>
   );
 }
 
-export default TimelinePosts;
+const Container = styled.div`
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+
+
+  p {
+    font-size: 25px;
+  }
+`
+
+const Image = styled.img`
+  margin-top; 50px;
+  width: 10vw;
+  height: 10vh;
+`
+
+

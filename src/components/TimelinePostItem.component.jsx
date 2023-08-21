@@ -4,9 +4,14 @@ import LinkPost from "./LinkPost.component";
 import { LikeComponent } from "./Post.Components/Like.component";
 import { EditOrDelete } from "./Post.Components/EditOrDelete";
 
+import userIcon from "../assets/images/icons/userIcon.jpeg";
+import useAuth from "../hooks/useAuth";
+
 export default function TimelinePostItem({post}) {
 
   const {description, link, userName} = post;
+  const { auth } = useAuth();
+  const imageUrl = auth.profileUrl;
   
   const textRef = useRef(null);
   const [isLiked, setIsLiked] = useState(false);
@@ -26,14 +31,11 @@ export default function TimelinePostItem({post}) {
     setEditing(false);
   };
   
-  const string = `Lorem ipsum dolor est bla bla bla etc etc e tals Muito maneiro esse tutorial de Material UI com React, deem uma olhada!`;
-  const authorImagePlaceholder =
-    "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTfeiK25FERClFs4W7YW5U9uN3EgWX1istoqeFeN_IPFLBGOvaC";
 
   return (
     <TimelinePost>
       <TimeLinePostLeft>
-        <AuthorImage src={authorImagePlaceholder} />
+        <AuthorImage src={!imageUrl ? userIcon : imageUrl} />
 
         {/* < LikeComponent
             isLiked={isLiked}
@@ -49,7 +51,7 @@ export default function TimelinePostItem({post}) {
             setToggle={setToggle}
             handleEditClick={handleEditClick}
         /> */}
-        <h2>{userName}</h2>
+        <h2 data-test="username">{userName}</h2>
 
         {/* {editing ? (
               <>
@@ -74,7 +76,7 @@ export default function TimelinePostItem({post}) {
               <p>{textValue}</p></>
             )} */}
 
-        <p>{description}</p>
+        <p data-test="description">{description}</p>
         <LinkPost />
       </TimeLinePostRight>
     </TimelinePost>

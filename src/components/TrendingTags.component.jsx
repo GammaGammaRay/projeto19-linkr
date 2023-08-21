@@ -36,12 +36,12 @@ function TrendingTags() {
   };
 
   return (
-    <TrendingTagsContainer>
+    <TrendingTagsContainer data-test="trending">
       <h2>trending</h2>
       <HorizontalLine />
       <TrendingTagsContainer>
         {trendingTags.map((tag, index) => (
-          <Tag key={index} onClick={() => handleTagClick(tag)}>
+          <Tag data-test="hashtag" key={index} onClick={() => handleTagClick(tag)}>
             {tag}
           </Tag>
         ))}
