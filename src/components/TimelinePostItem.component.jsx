@@ -88,7 +88,7 @@ export default function TimelinePostItem({post}) {
             )} */}
 
         <p data-test="description">{description}</p>
-        <LinkPost />
+        <LinkPost post={post}/>
       </TimeLinePostRight>
     </TimelinePost>
   );
