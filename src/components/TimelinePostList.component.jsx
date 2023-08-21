@@ -71,7 +71,7 @@ const Container = styled.div`
 `
 
 const Image = styled.img`
-  margin-top; 50px;
+  margin-top: 50px;
   width: 10vw;
   height: 10vh;
 `
