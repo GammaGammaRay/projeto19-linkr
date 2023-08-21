@@ -22,7 +22,7 @@ export default function SearchBar() {
     }
     const inputValue = inputRef.current.state.value;
 
-    const promise = api.searchUsers(auth, inputValue);
+    const promise = api.searchUsers(auth.token, inputValue);
 
     promise
       .then((res) => {

@@ -3,6 +3,7 @@ import { styled } from "styled-components";
 import LinkPost from "./LinkPost.component";
 import { LikeComponent } from "./Post.Components/Like.component";
 import { EditOrDelete } from "./Post.Components/EditOrDelete";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import userIcon from "../assets/images/icons/userIcon.jpeg";
 import useAuth from "../hooks/useAuth";
@@ -12,7 +13,6 @@ export default function TimelinePostItem({post}) {
   const {description, link, userName} = post;
   const { auth } = useAuth();
   const imageUrl = auth.profileUrl;
-  
   const textRef = useRef(null);
   const [isLiked, setIsLiked] = useState(false);
   const [toggle, setToggle] = useState(false);
@@ -21,16 +21,26 @@ export default function TimelinePostItem({post}) {
   const handleEditClick = () => {
     setEditing(!editing);
   };
-  
+  const navigate = useNavigate();
+
   const handleKey = (e) => {
     console.log(e);
     if (e.keyCode === 27) return setEditing(!editing);
     if (e.keyCode !== 13) return;
-    
+
     setTextValue(textRef.current.value);
     setEditing(false);
   };
   
+  function handleClick() {
+    navigate(`/user/${post.id}`);
+  }
+
+  const string = `Lorem ipsum dolor est bla bla bla etc etc e tals Muito maneiro esse tutorial de Material UI com React, deem uma olhada!`;
+  const authorImagePlaceholder =
+    "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTfeiK25FERClFs4W7YW5U9uN3EgWX1istoqeFeN_IPFLBGOvaC";
+
+  console.log(post);
 
   return (
     <TimelinePost>
@@ -51,7 +61,8 @@ export default function TimelinePostItem({post}) {
             setToggle={setToggle}
             handleEditClick={handleEditClick}
         /> */}
-        <h2 data-test="username">{userName}</h2>
+
+        <h2 onClick={handleClick} data-test="username">{userName}</h2>
 
         {/* {editing ? (
               <>
@@ -115,6 +126,9 @@ const TimeLinePostRight = styled.div`
     line-height: 1.1em;
     font-size: 26px;
     font-weight: 500;
+    &:hover {
+      cursor: pointer;
+    }
   }
   p {
     font-size: 12px;
