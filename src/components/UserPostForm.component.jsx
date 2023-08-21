@@ -48,7 +48,7 @@ export default function PostForm() {
   }
 
   return (
-    <PostContainer>
+    <PostContainer data-test="publish-box">
       <ImageBox>
         <UserImage src={!imageUrl ? userIcon : imageUrl} />
       </ImageBox>
