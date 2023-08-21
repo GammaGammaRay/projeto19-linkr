@@ -20,7 +20,7 @@ export default function PostForm() {
     "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTfeiK25FERClFs4W7YW5U9uN3EgWX1istoqeFeN_IPFLBGOvaC";
 
   function handlePost(e) {
-
+    
     if (!url) {
       alert("Please, enter the URL of your post!");
     } else {
@@ -41,6 +41,7 @@ export default function PostForm() {
           setDescription("");
         })
         .catch((error) => {
+          console.log(error)
           alert("There was an error publishing your link.");
         })
         .finally(() => {

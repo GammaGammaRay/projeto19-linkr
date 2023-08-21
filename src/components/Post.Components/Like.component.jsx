@@ -1,13 +1,25 @@
+import axios from "axios";
 import { useState } from "react";
 import { Tooltip } from "react-tooltip";
 import { styled } from "styled-components";
+import useAuth from "../../hooks/useAuth";
 
 
 export function LikeComponent(props){
-    const{isLiked, setIsLiked} = props;
+    const { token, auth } = useAuth();
+    const config = { headers: { Authorization: `Bearer ${token}` } };
+    const{isLiked, setIsLiked, idPost} = props;
     const detail = `Maria João e outras 12 pessoas`;
     const handleLike = ()=>{
-        setIsLiked(!isLiked);
+        axios.post(`${process.env.API_URL}/handleLIke`,{id:idPost, userId: auth.userId})
+        .then(res=>{
+          console.log(res);
+          setIsLiked(!isLiked);
+         
+        }).catch(err=>{
+          console.log(err)
+        })
+        
     }
 
     return(
