@@ -1,14 +1,96 @@
 import  styled  from "styled-components";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import axios from "axios";
+import useAuth from "../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 export default function PostForm() {
  
+  const { token, auth } = useAuth();
+  const navigate = useNavigate();
+  const imageUrl = auth.profileUrl;
+
   const [url, setUrl] = useState("");
   const [description, setDescription] = useState("");
+  const [error, setError] = useState(false);
+  const [emptyPage, setEmptyPage] = useState(false);
   const [publishing, setPublishing] = useState(false);
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const authorImagePlaceholder =
     "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTfeiK25FERClFs4W7YW5U9uN3EgWX1istoqeFeN_IPFLBGOvaC";
 
+    const config = { headers: { Authorization: `Bearer ${token}` } };
+
+    useEffect(() => {
+      console.log(`${process.env.API_URL}/posts`)
+      axios
+        .get(`${process.env.API_URL}/posts`, config)
+        .then((res) => {
+          if (Array.isArray(res.data.results)) { 
+            const sortPosts = res.data.results.sort((a, b) => b.id - a.id);
+            const recentPosts = sortPosts.slice(0, 20);
+            setPosts(recentPosts);
+            setEmptyPage(recentPosts.length === 0);
+            setLoading(false);      
+          } else {
+            console.error(res.data);
+            setError(true);
+            setLoading(false);
+            alert(
+              "An error occurred while trying to fetch the posts, please refresh the page"
+            );
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+          setError(true);
+          setLoading(false);
+          alert(
+            "An error occurred while trying to fetch the posts, please refresh the page"
+          );
+        });
+    
+    }, []);
+
+ //PUBLICAR POSTS;
+ const handlePost = useCallback(async (e) => {
+  console.log("Post url: " +url)
+  e.preventDefault()
+  if (!url) {
+    alert("Please, enter the url of your post!");
+  }
+  setPublishing(true);
+
+  try {
+      await axios.post(
+          `${process.env.API_URL}/posts`,
+          {
+              link: url,
+              description: description,
+          },
+          config
+      );
+      setDescription("");
+
+      const updatedPostsResponse = await axios.get(
+        `${process.env.API_URL}/posts`,
+        config
+      );
+      const sortedPosts = updatedPostsResponse.data.sort((a, b) => b.id - a.id);
+      const recentPosts = sortedPosts.slice(0, 20);
+
+      setPosts(recentPosts);
+      setEmptyPage(recentPosts.length === 0);
+      setDescription("");
+  }
+  catch (err) {
+    console.log(err)
+    setPublishing(false);
+    alert("There was an error publishing your link.");
+  }
+
+}, []);  
     
   return (
       <PostContainer>
@@ -20,7 +102,7 @@ export default function PostForm() {
         <PublishBox>
           <h2>What are you going to share today?</h2>
 
-          <FormContainer>
+          <FormContainer onSubmit={handlePost}>
             <input      
                 data-test="link"
                 className="url"

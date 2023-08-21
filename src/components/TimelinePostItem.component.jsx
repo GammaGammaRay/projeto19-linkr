@@ -39,21 +39,21 @@ export default function TimelinePostItem() {
 
         <AuthorImage src={authorImagePlaceholder} />
 
-        < LikeComponent
+        {/* < LikeComponent
             isLiked={isLiked}
             setIsLiked={setIsLiked}
-        />
+        /> */}
 
       </TimeLinePostLeft>
 
       <TimeLinePostRight>
-        <EditOrDelete
+        {/* <EditOrDelete
 
             textRef={textRef}
             toggle={toggle}
             setToggle={setToggle}
             handleEditClick={handleEditClick}
-        />
+        /> */}
         <h2>Juvenal Juvêncio</h2>       
 
             {editing ? (
