@@ -6,9 +6,9 @@ import { EditOrDelete } from "./Post.Components/EditOrDelete";
 
 import userIcon from "../assets/images/icons/userIcon.jpeg";
 import useAuth from "../hooks/useAuth";
+import { Link } from "react-router-dom";
 
 export default function TimelinePostItem({post}) {
-
   const {description, link, userName} = post;
   const { auth } = useAuth();
   const imageUrl = auth.profileUrl;
@@ -31,6 +31,11 @@ export default function TimelinePostItem({post}) {
     setEditing(false);
   };
   
+  const convertHashtagsToLinks = (text) => {
+    return text.replace(/#(\w+)/g, '<StyledLink to="/hashtag/$1">#$1</Link>');
+  };
+
+  const descriptionConvertedHashtags = convertHashtagsToLinks(description);
 
   return (
     <TimelinePost>
@@ -76,7 +81,7 @@ export default function TimelinePostItem({post}) {
               <p>{textValue}</p></>
             )} */}
 
-        <p data-test="description">{description}</p>
+        <p data-test="description">{convertHashtagsToLinks(descriptionConvertedHashtags)}</p>
         <LinkPost />
       </TimeLinePostRight>
     </TimelinePost>
@@ -139,3 +144,8 @@ const AuthorImage = styled.img`
   object-fit: cover;
   border-radius: 100%;
 `;
+
+const StyledLink = styled(Link)`
+  font-weight: 700;
+  cursor: pointer;
+`
