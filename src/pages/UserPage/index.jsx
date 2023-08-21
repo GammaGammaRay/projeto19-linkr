@@ -27,7 +27,7 @@ export default function UserPage() {
       return;
     };
 
-    const promise = api.getUserPosts(auth, id);
+    const promise = api.getUserPosts(auth.token, id);
 
     promise
       .then((res) => {
