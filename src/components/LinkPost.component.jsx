@@ -4,7 +4,7 @@ import imageLink from "../assets/images/icons/react.png";
 
 function LinkPost({post}) {
 
-  const {urlTitle, link, urlDescr} = post;
+  const {urlTitle, link, urlDescr, urlImg} = post;
 
   return (
     <LinkPostContainer 
@@ -24,7 +24,7 @@ function LinkPost({post}) {
       </LinkPostContainerLeft>
       <LinkPostContainerRight>
         <a href={link}>
-          <LinkPostImage src={imageLink} />
+          <LinkPostImage src={!urlImg ?imageLink :urlImg} />
         </a>
       </LinkPostContainerRight>
 
